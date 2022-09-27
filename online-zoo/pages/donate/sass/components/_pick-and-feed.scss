@@ -11,9 +11,9 @@
 
 .help__description {
     color: $color-text;
-    margin-bottom: 47px;
+    margin-bottom: 46px;
     font-weight: 500;
-    line-height: 120%;
+    line-height: 135%;
 
 }
 
@@ -31,12 +31,12 @@
 .pick-and-feed__title {
     color: $color-orange;
     text-align: center;
-    margin-bottom: 25px;
+    margin-bottom: 27px;
     margin-left: -9px;
 }
 
 .pick-and-feed__big-text {
-    margin-bottom: 60px;
+    margin-bottom: 61px;
 }
 
 .diet {
@@ -45,7 +45,7 @@
 
 .diet__content {
     @include flex();
-    margin-bottom: 52px;
+    margin-bottom: 53px;
 }
 
 .count {
@@ -62,7 +62,7 @@
 }
 
 .amount__title {
-    margin-bottom: 20px;
+    margin-bottom: 18px;
     color: $color-black;
 }
 
