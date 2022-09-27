@@ -75,7 +75,13 @@
     color: $color-text;
     text-decoration: none;
     cursor: pointer;
-    &.active {
+    &:hover {
+        color: $color-active;
+        & .media__icon {
+            background-color: $color-active;
+        }
+    }
+    &:active {
         color: $color-active;
         & .media__icon {
             background-color: $color-active;
