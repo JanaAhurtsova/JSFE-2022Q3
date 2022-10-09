@@ -1,20 +1,97 @@
 .backstage {
-    padding: 141px 0 177px;
+    padding: 142px 0 175px;
     background: url('../../../assets/images/main/flower_foto1_bg.png') right top 12px no-repeat;
+    @media (max-width: 1460px) {
+        background-position: right -7% top 12px;
+    }
+    @media (max-width: 1320px) {
+        background-position: right -13% top 12px;
+    }
+    @media (max-width: 1220px) {
+        background: none;
+    }
+    @include media-desktopsmall {
+        padding: 100px 0 141px;
+    }
+    @include media-tablet {
+        padding: 60px 0 79px;
+        background: url('../../../assets/images/main/flower_foto1_bg.png') right -5.9% top -5px no-repeat;
+        background-size: 158px 482px;
+    }
+    @media (max-width: 600px) {
+        padding: 20px 0 37px;
+        background-position: right -18% top 40%;
+    }
+    @media (max-width: 470px) {
+        background-position: right -30% top 45%;
+    }
+    @media (max-width: 420px) {
+        background-position: right -10% top 12%;
+        background-size: 75px 217px;
+    }
+    @media (max-width: 390px) {
+        background-position: right -17% top 12%;
+    }
 }
 
 .backstage_img {
-    max-width: 52.5%;
+    width: 52.5%;
+    object-fit: cover;
+    @include media-desktopsmall {
+        width: 48.4%;
+        height: 408px;
+    }
+    @media (max-width: 900px) {
+        width: 42%;
+        height: 120%;
+    }
+    @media (max-width: 768px) {
+        width: 32%;
+    }
+    @include media-tablet {
+        display: none;
+    }
 }
 
 .backstage__content {
-    padding-left: 8.6rem;
+    width: 40%;
+    @media (max-width: 1460px) {
+        width: 45%;
+    }
+    @media (max-width: 1200px) {
+        width: 47%;
+    }
+    @include media-desktopsmall {
+        width: 48.3%;
+    }
+    @media (max-width: 935px) {
+        width: 55%;
+    }
+    @media (max-width: 768px) {
+        width: 68%;
+    }
+    @include media-tablet {
+        width: 82.5%;
+    }
+    @media (max-width: 412px) {
+        width: 100%;
+    }
 }
 
 .backstage__title {
     margin-bottom: 20px;
+    @media (max-width: 412px) {
+        font-size: 2.4rem;
+        margin-bottom: 10px;
+    }
 }
 
 .backstage__subtitle {
     margin: 55px 0 35px;
+    @media (max-width: 900px) {
+        margin: 30px 0 22px;
+    }
+    @media (max-width: 390px) {
+        margin: 20px 0 10px;
+    }
 }

@@ -8,6 +8,7 @@ body {
     font-family: 'Roboto', Verdana, sans-serif;
     @include font($size: 1.6rem, $height: 140%);
     color: $color-black-blue;
+    overflow-x: hidden;
 }
 
 h1 {

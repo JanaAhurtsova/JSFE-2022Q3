@@ -2,7 +2,29 @@
     position: absolute;
     left: 12%;
     bottom: 12%;
-    @extend %transition;    
+    @extend %transition;
+    @include media-tablet {
+        height: 17px;
+        left: 15%;
+        bottom: 20%;
+    } 
+}
+
+.logo__icon__media {
+    left: 6%;
+    bottom: 9%;
+    height: 13px;
+}
+
+.logo__icon__footer {
+    @include media-tablet {
+        height: 20px;
+        bottom: 20%;
+    }
+    @media (max-width: 412px) {
+        bottom: 28%;
+        left: 56%;
+    }
 }
 
 .pets__icon__banana {
@@ -11,6 +33,11 @@
     background-repeat: no-repeat;
     width: 33px;
     height: 37px;
+    @media (max-width: 768px) {
+        width: 25.72px;
+        height: 28.84px;
+        background-size: contain;
+    }
 }
 
 .pets__icon__meat {
@@ -19,6 +46,11 @@
     background-repeat: no-repeat;
     width: 48px;
     height: 38px;
+    @media (max-width: 768px) {
+        width: 37.41px;
+        height: 29.62px;
+        background-size: contain;
+    }
 }
 
 .pay__icon {
@@ -43,7 +75,10 @@
     background: url("../../../assets/icons/main/how\ it\ works/arrow.svg") center/contain no-repeat;
     width: 70px;
     height: 35px;
-    transform: translateY(60px)
+    transform: translateY(60px);
+    @include media-tablet {
+        display: none;
+    }
 }
 
 .testimonial__icon {
@@ -60,7 +95,8 @@
     background: url("../../../assets/icons/main/testimonials/frederica.svg") center/contain no-repeat;
 }
 
-.mila {
+.mila,
+.osca {
     background: url("../../../assets/icons/main/testimonials/mila.svg") center/contain no-repeat;
 }
 

@@ -1,34 +1,108 @@
 .pets {
     padding-bottom: 100px;
-    background: url('../../../assets/images/main/palm_foto_bg.png') bottom left no-repeat,
+    background: url('../../../assets/images/main/palm_foto_small.png') bottom left no-repeat,
     url('../../../assets/images/main/strelitzia_bg.png') bottom right no-repeat;
+    @include media-desktopsmall {
+        background: url('../../../assets/images/main/palm_foto.png') bottom left -18% no-repeat,
+        url('../../../assets/images/main/strelitzia_bg.png') bottom right no-repeat;
+        padding-bottom: 140px;
+        background-size: 315px 202px, 241px 180px;
+    }
+    @include media-tablet {
+        padding-bottom: 100px;
+        background-position: bottom left -56%, bottom right;
+        background-size: 315px 202px, 175px 131px;
+    }
+    @media (max-width: 600px) {
+        padding-bottom: 60px;
+        background-position: bottom left -30%, bottom right -5%;
+        background-size: 200px 128px, 121px 90px;
+    }
+    @media (max-width: 480px) {
+        background-position: bottom left -45%, bottom right -5%;
+    }
+    @media (max-width: 440px) {
+        background-position: bottom left -57%, bottom right -5%;
+    }
+    @media (max-width: 412px) {
+        background-size: 119.5px 72.5px, 94px 71px;
+        background-position: bottom left -25%, bottom -4px right -22px;
+    }
+    @media (max-width: 336px) {
+        background-position: bottom left -32%, bottom -4px right -22px;
+    }
+    @include media-mobile {
+        background-position: bottom left -30%, bottom -4px right -22px;
+    }
 }
 
 .pets__block {
     position: relative;
     overflow: hidden;
-    border: 1.2px solid transparent;
+    border: 1px solid transparent;
     background: $color-btn-default;
     border-radius: 5px;
+    &:last-child {
+        display:none;
+        @include media-desktopsmall {
+            display: block;
+            order: 5;
+        }
+    }
+    &:nth-child(3) {
+        @include media-desktopsmall {
+            order: 4;
+        }
+    }
+    &:nth-child(4) {
+        @include media-desktopsmall {
+            display: none;
+        }
+    }
+    &:nth-child(5) {
+        @include media-desktopsmall {
+            order: 3;
+        }
+        @include media-tablet {
+            display: none;
+        }
+    }
+    &:nth-child(6) {
+        @include media-desktopsmall {
+            order: 6;
+        }
+        @include media-tablet {
+            display: none;
+        }
+    }
+    @include media-mobile {
+        width: 285px;
+        height: 332px;
+    }
 }
 
 .pets-banana__content {
     @include flex($justify: space-between);
-    padding: 8px 12px 11px 14.5px;
+    padding: 8px 12px 12px 14.5px;
     color: $color-black;
     transform: translateY(0);
     transition: transform .5s linear;
     background-color: $color-text;
+    @media (max-width: 980px) {
+        padding: 6px 9px 10px 12.5px;
+    }
 }
 
 .pets-meat__content {
     @include flex($justify: space-between);
-    padding: 8px 8px 11px 14px;
+    padding: 8px 8px 12px 14px;
     color: $color-black;
     transform: translateY(0);   
     transition: transform .5s linear;
     background-color: $color-text;
-
+    @media (max-width: 980px) {
+        padding: 6px 6px 11px 12.5px;
+    }
 }
 
 .pets__name {
@@ -36,6 +110,9 @@
     font-weight: 500;
     text-transform: uppercase;
     line-height: 140%;
+    @media (max-width: 980px) {
+        font-size: 1.25rem;
+    }
 }
 
 .pets__country {
@@ -43,6 +120,9 @@
     font-weight: 300;
     font-size: 1.5rem;
     line-height: 120%;
+    @media (max-width: 980px) {
+        font-size: 1.17rem;
+    }
 }
 
 .pet__img {
@@ -75,7 +155,7 @@
     border-radius: 50%;
     width: 62px;
     height: 62px;
-    top: calc(50% - 33px);
+    top: calc(43% - 31px);
     z-index: 1;
     cursor: pointer;
     &:hover {
@@ -84,14 +164,49 @@
     &:active {
         background: $color-active
     }
+    @media (max-width: 768px) {
+        top: 36%;
+    }
+    @include media-tablet {
+        top: calc(43% - 31px);
+    }
+    @media (max-width: 432px) {
+        top: 46.2%;
+        width: 32px;
+        height: 32px;
+    }
+    @media (max-width: 412px) {
+        top: 46.2%;
+    }
+    @include media-mobile {
+        display: none;
+    }
 }
 
 .arrow__left {
     left: -82px;
+    @media (max-width: 1320px) {
+        left: calc(40% - 54px);
+    }
+    @include media-tablet {
+        left: 37%;
+    }
+    @media (max-width: 500px) {
+        left: 30%;
+    }
 }
 
 .arrow__right {
     right: -82px;
+    @media (max-width: 1320px) {
+        right: calc(40% - 54px);
+    }
+    @include media-tablet {
+        right: 37%;
+    }
+    @media (max-width: 500px) {
+        right: 30%;
+    }
 }
 
 .arrow {

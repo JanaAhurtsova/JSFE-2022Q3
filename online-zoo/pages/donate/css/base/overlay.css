@@ -1,0 +1,1 @@
+.overlay{display:none;position:fixed;top:0;right:-100%;width:100vw;height:100vh;z-index:9;background-color:rgba(0,0,0,0.25)}.overlay.active{display:block;margin:0 auto;right:0}

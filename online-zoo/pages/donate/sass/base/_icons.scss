@@ -6,6 +6,28 @@
     &:hover {
         fill: #F9804B;
     }
+    @include media-tablet {
+        height: 17px;
+        left: 14%;
+        bottom: 15%;
+    }
+}
+
+.logo__icon__media {
+    left: 6%;
+    bottom: 9%;
+    height: 13px;
+}
+
+.logo__icon__footer {
+    @include media-tablet {
+        height: 20px;
+        bottom: 20%;
+    }
+    @media (max-width: 412px) {
+        bottom: 25%;
+        left: 57%;
+    }
 }
 
 .x__icon {
@@ -14,12 +36,33 @@
     height: 14px;
     margin-right: 64px;
     transform: translateY(115%);
+    @media (max-width: 425px) {
+        margin-right: 30px;
+    }
+    @media (max-width: 390px) {
+        width: 8px;
+        height: 8px;
+        background-size: contain;
+    }
 }
 
 .animal__icon {
     background: url('../../../assets/icons/donate/panda.svg');
     width: 284px;
     height: 246px;
+    @media (max-width: 546px) {
+        width: 240px;
+        height: 208px;
+        background-size: contain;
+    }
+    @media (max-width: 425px) {
+        width: 200px;
+        height: 173px;
+    }
+    @media (max-width: 390px) {
+        width: 160px;
+        height: 139px;
+    }
 }
 
 .dollar__icon,
@@ -29,6 +72,14 @@
     height: 20px;
 }
 
+.dollar__icon {
+    @media (max-width: 412px) {
+        width: 5px;
+        height: 10px;
+        background-size: contain;
+    }
+}
+
 .dollar__icon.active {
-    filter: invert(70%) sepia(42%) saturate(4204%) hue-rotate(349deg) brightness(100%)  contrast(102%);
+    filter: invert(70%) sepia(42%) saturate(3404%) hue-rotate(349deg) brightness(120%)  contrast(102%);
 }

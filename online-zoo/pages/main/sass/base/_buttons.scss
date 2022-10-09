@@ -21,6 +21,25 @@
 
 .watch-online__btn {
     margin-top: 60px;
+    @include media-desktopsmall {
+        margin-top: 42px;
+    }
+    @include media-tablet {
+        margin-top: -7.5px;
+        transform: translateX(-109.5%);
+    }
+    @media (max-width: 600px) {
+        display: none;
+    }
+
+}
+
+.watch-online__double {
+    display: none;
+    @media (max-width: 600px)  {
+        display: block;
+        margin-bottom: 30px;
+    }
 }
 
 .favorite {
@@ -30,6 +49,12 @@
 .feedback,
 .button__donate {
     border-radius: 5px;
+}
+
+.feedback {
+    @include media-tablet {
+        width: 240px;
+    }
 }
 
 .submit {
@@ -45,10 +70,20 @@
     }
 }
 
-.feed {
-    transform: translateX(145%);
+.button__donate {
+    margin-top: 70px;
+    margin-bottom: 45px;
+    border-radius: 5px;
+    @include media-tablet {
+        margin-top: 30px;
+        margin-bottom: 0;
+        grid-row-start: 2;
+        grid-row-end: 4;
+        grid-column-start: 1;
+    }
+    @media (max-width: 412px) {
+        order: 1;
+        margin-top: 20px;
+    }
 }
 
-.button__donate {
-    margin-bottom: 44px;
-}

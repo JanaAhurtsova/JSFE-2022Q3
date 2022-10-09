@@ -1,17 +1,36 @@
 .header {
+    position: relative;
     padding: 14px 0;
     background: $color-black;
-}
-
-.wrapper__header {
-    @include grid();
-    align-items: center;
+    width: 100%;
+    z-index: 10;
+    @include media-tablet {
+        position: fixed;
+        top: 0;
+        padding: 2.3px 0 2.7px;
+    }
+    & .wrapper {
+        @include media-tablet {
+            @include flex($justify: space-between);
+        }
+    }
 }
 
 .menu {
     @include flex($justify: flex-start);
     gap: 5.8rem;
     margin: 0;
+    padding: 0;
+    @include media-desktopsmall {
+        gap: 4.8rem;
+    }
+    @include media-tablet {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 1.5rem;
+        margin-top: 30px;
+        margin-bottom: 15px;
+    }
 }
 
 .menu__item {
@@ -29,10 +48,14 @@
     &:active {
         color: $color-btn-hover-active;
     }
+    @include media-tablet {
+        color: $color-black-blue;
+    }
 }
 
 .designed {
     text-decoration: none;
+    text-align: right;
     font-weight: 500;
     color: $color-text;
     cursor: pointer;
@@ -45,6 +68,9 @@
     }
     &:active {
         color: $color-btn-hover-active;
+    }
+    @include media-tablet {
+        color: $color-black-blue;
     }
 }
 

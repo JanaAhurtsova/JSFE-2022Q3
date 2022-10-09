@@ -14,7 +14,7 @@
     border: none;
 }
 
-@mixin grid($column: 1fr 9fr 1fr) {
+@mixin grid($column: 0.57fr 3fr 1fr) {
     display: grid;
     grid-template-columns: $column;
 }

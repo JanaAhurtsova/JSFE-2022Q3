@@ -8,6 +8,11 @@
     border-radius: 2px;
     text-align: center;
     @extend %transition;
+    @include media-tablet {
+        border: 1px solid $color-orange;
+        width: 64px;
+        padding: 2.5px; 
+    }
 }
 
 .logo__link {
@@ -18,4 +23,68 @@
     text-decoration: none;
     margin: 0;
     @extend %transition;
+    & h1 {
+        font-size: 1.9rem;
+        line-height: 120%;
+        @include media-tablet {
+            font-size: 1.52rem;
+        }
+    }
+    & p {
+        font-size: 1.9rem;
+        line-height: 120%;
+    }
+}
+
+.logo__text {
+    @include media-tablet {
+        font-size: 1.23rem;
+        color: $color-text;
+        font-weight: 400;
+        line-height: 1.3em;
+    }
+}
+
+.logo__media {
+    display: none;
+    @include media-tablet {
+        display: inline-block;
+        border: none;
+        padding: 0; 
+        width: 47px;
+        height: 29px;
+    }
+}
+
+.logo__media__link {
+    text-decoration: none;
+}
+
+.logo__header__menu {
+    @include media-tablet {
+        color: $color-orange;
+    }
+    & .logo__icon {
+        @include media-tablet {
+            filter: invert(66%) sepia(52%) saturate(3040%) hue-rotate(351deg) brightness(203%) contrast(98%);
+        }
+    }
+}
+
+.logo__footer {
+    border: 1px solid $color-text;
+    @include media-tablet {
+        padding: 0.54px 4.75px 6px;
+        width: 72px;
+        grid-row-start: 1;
+        grid-column-start: 1;
+    }
+    @media (max-width: 412px) {
+        border: none;
+        width: 128px;
+        height: 23px;
+        padding: 0;
+        order: -2;
+        margin-bottom: 30px;
+    }
 }

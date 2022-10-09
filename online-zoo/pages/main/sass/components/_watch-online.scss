@@ -1,15 +1,37 @@
 .background {
     background: url('../../../assets/images/main/Panda.jpg') center/cover no-repeat;
+    @media (max-width: 390px) {
+        background-position: top 34px center;
+        background-size: 384px 187px;
+    }
 }
 
 .watch-online {
     padding: 86px 0 100px;
+    @include media-desktopsmall {
+        padding: 43px 85px 47px 0;
+    }
+    @include media-tablet {
+        padding: 84px 0px 40px;
+    }
+    @media (max-width: 390px) {
+        padding: 75px 0px 41px;
+    }
 }
 
 .watch-online__content {
     @include flex();
     flex-direction: column;
-    max-width: 500px;    
+    max-width: 500px;
+    @include media-desktopsmall {
+        max-width: 400px;
+    }
+    @include media-tablet {
+        max-width: 248px;
+    }
+    @media (max-width: 390px) {
+        max-width: 128px;
+    }
 }
 
 .watch-online__title {
@@ -36,6 +58,30 @@
         z-index: -1;
         bottom: 10px;
         left: -14.5%;
+        @include media-desktopsmall {
+            width: 367px;
+            height: 367px;
+            bottom: 5px;
+        }
+        @include media-tablet {
+            width: 238px;
+            height: 238px;
+            bottom: 4.6px;
+            left: -17%;
+        }
+        @media (max-width: 390px) {
+            width: 119px;
+            height: 119px;
+            left: -15%;
+        }
     }
-    
+    @include media-desktopsmall {
+        font-size: 8.5rem;
+    }
+    @include media-tablet {
+        font-size: 5.4rem;
+    }
+    @media (max-width: 390px) {
+        font-size: 2.8rem;
+    }
 }
