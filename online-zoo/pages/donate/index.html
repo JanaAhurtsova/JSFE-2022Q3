@@ -68,28 +68,28 @@
                 <div class="progress__bar">
                     <div class="progress-bar__list">
                         <div class="big-dot">
-                            <input type="radio" name="count" id="5000" class="count__dot">
+                            <input type="radio" name="count" id="5000" value="5000" class="count__dot">
                         </div>
                         <div class="big-dot">
-                            <input type="radio" name="count" id="2000" class="count__dot">
+                            <input type="radio" name="count" id="2000" value="2000" class="count__dot">
+                        </div>
+                        <div class="big-dot">
+                            <input type="radio" name="count" id="1000" value='1000' class="count__dot">
+                        </div>
+                        <div class="big-dot">
+                            <input type="radio" name="count" id="500" value="500" class="count__dot">
+                        </div>
+                        <div class="big-dot">
+                            <input type="radio" name="count" id="250" value="250" class="count__dot">
                         </div>
                         <div class="big-dot active">
-                            <input type="radio" name="count" id="1000" checked class="count__dot">
+                            <input type="radio" name="count" id="100" value="100" checked class="count__dot">
                         </div>
                         <div class="big-dot">
-                            <input type="radio" name="count" id="500" class="count__dot">
+                            <input type="radio" name="count" id="50" value="50" class="count__dot">
                         </div>
                         <div class="big-dot">
-                            <input type="radio" name="count" id="250" class="count__dot">
-                        </div>
-                        <div class="big-dot">
-                            <input type="radio" name="count" id="100" class="count__dot">
-                        </div>
-                        <div class="big-dot">
-                            <input type="radio" name="count" id="50" class="count__dot">
-                        </div>
-                        <div class="big-dot">
-                        <input type="radio" name="count" id="25" class="count__dot">
+                        <input type="radio" name="count" id="25" value="25" class="count__dot">
                         </div>
                     </div>
                 </div>
@@ -102,8 +102,8 @@
                         <span class="dollar__icon"></span>
                         2000
                     </label>
-                    <label for="1000" class="sum active">
-                        <span class="dollar__icon active"></span>
+                    <label for="1000" class="sum">
+                        <span class="dollar__icon"></span>
                         1000
                     </label>
                     <label for="500" class="sum">
@@ -114,8 +114,8 @@
                         <span class="dollar__icon"></span>
                         250
                     </label>
-                    <label for="100" class="sum">
-                        <span class="dollar__icon"></span>
+                    <label for="100" class="sum active">
+                        <span class="dollar__icon active"></span>
                         100
                     </label>
                     <label for="50" class="sum">
@@ -128,7 +128,7 @@
                     </label>
                 </div>
                 <form class="input__amount" action="#">
-                    <input type="number" class="another-amount" max="9999" placeholder="Another amount" />
+                    <input type="number" class="another-amount" min="1" max="9999" value="100" placeholder="Another amount" />
                     <div class="amount-icon"></div>
                 </form>
                 <div class="amount-radio">

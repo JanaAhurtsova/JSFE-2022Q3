@@ -51,3 +51,21 @@
 .hamburger__line.active {
     transform: scale(0);
 }
+
+.overlay__burger {
+    display: none;
+    position:fixed;
+    top: 0;
+    right: -100%;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9;
+    background-color: $color-overlay;
+    transition: all .4s linear;
+}
+
+.overlay__burger.active {
+    display: block;
+    margin: 0 auto;
+    right: 0;
+}

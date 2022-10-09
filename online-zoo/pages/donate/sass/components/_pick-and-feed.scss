@@ -260,13 +260,14 @@
     background: $color-yellow;
     border: none;
     z-index: 10;
+    cursor: pointer;
     @media (max-width: 412px) {
         width: 5px;
         height: 5px;
     }
 }
 
-.count__dot:checked:before {
+.big-dot.active:before {
     content: '';
     position: absolute;
     background: transparent;
@@ -293,7 +294,7 @@
     }
 }
 
-.count__dot:checked:after {
+.big-dot.active:after {
     content: '';
     position: absolute;
     background: transparent;
@@ -414,9 +415,12 @@ input[type=number] {
             filter: invert(21%) sepia(83%) saturate(3041%) hue-rotate(353deg) brightness(84%) contrast(97%);
         }
     }
-    &:active {
+    &:valid {
         color: $color-active;
         border: 1px solid $color-active;
+        & ~ .amount-icon {
+            filter: invert(40%) sepia(52%) saturate(3759%) hue-rotate(63deg) brightness(99%) contrast(101%);
+        }
     }
     @include media-tablet {
         padding: 11px 6px;

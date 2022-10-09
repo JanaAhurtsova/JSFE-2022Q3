@@ -27,30 +27,8 @@
     }
 }
 
-.pets__icon__banana {
-    background-image: url("../../../assets/icons/main/animals/banana-bamboo_icon.svg");
-    background-position: left;
-    background-repeat: no-repeat;
-    width: 33px;
-    height: 37px;
-    @media (max-width: 768px) {
-        width: 25.72px;
-        height: 28.84px;
-        background-size: contain;
-    }
-}
-
-.pets__icon__meat {
-    background-image: url("../../../assets/icons/main/animals/meet-fish_icon.svg");
-    background-position: center;
-    background-repeat: no-repeat;
-    width: 48px;
-    height: 38px;
-    @media (max-width: 768px) {
-        width: 37.41px;
-        height: 29.62px;
-        background-size: contain;
-    }
+.pets__icon {
+    object-fit: contain;
 }
 
 .pay__icon {
@@ -81,22 +59,22 @@
     }
 }
 
-.testimonial__icon {
-    background: url("../../../assets/icons/main/testimonials/user_icon.svg") center/contain no-repeat;
-    width: 37px;
-    height: 37px;
-}
+// .testimonial__icon {
+//     background: url("../../../assets/icons/main/testimonials/user_icon.svg") center/contain no-repeat;
+//     width: 37px;
+//     height: 37px;
+// }
 
-.oscar {
-    background: url("../../../assets/icons/main/testimonials/oscar.svg") center/contain no-repeat;
-}
+// .oscar {
+//     background: url("../../../assets/icons/main/testimonials/oscar.svg") center/contain no-repeat;
+// }
 
-.frederica {
-    background: url("../../../assets/icons/main/testimonials/frederica.svg") center/contain no-repeat;
-}
+// .frederica {
+//     background: url("../../../assets/icons/main/testimonials/frederica.svg") center/contain no-repeat;
+// }
 
-.mila,
-.osca {
-    background: url("../../../assets/icons/main/testimonials/mila.svg") center/contain no-repeat;
-}
+// .mila,
+// .osca {
+//     background: url("../../../assets/icons/main/testimonials/mila.svg") center/contain no-repeat;
+// }
 

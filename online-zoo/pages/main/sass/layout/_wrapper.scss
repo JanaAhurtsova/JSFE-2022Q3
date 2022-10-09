@@ -90,9 +90,27 @@
 }
 
 .wrapper__testimonials {
+    overflow: hidden;
     @include media-tablet {
         @include flex();
         flex-direction: column;
+    }
+}
+
+.feedback-wrapper {
+    position: relative;
+    transition: all .4s linear;
+    padding-left: 1px;
+    margin-bottom: 24px;
+    transition: all 400ms ease;
+    @include media-desktopsmall {
+        margin-bottom: 23px;
+    }
+    @include media-tablet {
+        height: 357px;
+    }
+    @include media-mobile {
+        height: 360px;
     }
 }
 

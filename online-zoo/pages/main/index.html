@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="overlay"></div>
+    <div class="overlay__burger"></div>
     <div class="background">
         <header class="header">
             <div class="wrapper">
@@ -69,77 +69,73 @@
     </section>
     <div class="pets">
         <div class="wrapper wrapper__pets">
-            <div class="layout-3-column">
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/pandas.jpg" alt="pandas" class="pet__img">
-                    <div class="pets__content pets-banana__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">giant Pandas</h5>
-                            <p class="pets__country">Native to Southwest China</p>
-                        </div>
-                        <div class="pets__icon pets__icon__banana"></div>
+            <div class="carousel-wrapper">
+                <div class="carousel">
+                    <div class="layout-3-column item-left"></div>
+                    <div class="layout-3-column item">
+                        <article class="pets__block card1">
+                            <img src="../../assets/images/main/animals/pandas.jpg" alt="pandas" class="pet__img">
+                            <div class="pets__content">
+                                <div class="pets__description">
+                                    <h5 class="pets__name">giant Pandas</h5>
+                                    <p class="pets__country">Native to Southwest China</p>
+                                </div>
+                                <img src="../../assets/icons/main/animals/banana-bamboo_icon.svg" class="pets__icon">
+                            </div>
+                        </article>
+                        <article class="pets__block card2">
+                            <img src="../../assets/images/main/animals/eagle.jpg" alt="eagles" class="pet__img">
+                            <div class="pets__content">
+                                <div class="pets__description">
+                                    <h5 class="pets__name">eagles</h5>
+                                    <p class="pets__country">Native to South America</p>
+                                </div>
+                                <img src="../../assets/icons/main/animals/meet-fish_icon.svg" class="pets__icon">
+                            </div>
+                        </article>
+                        <article class="pets__block card3">
+                            <img src="../../assets/images/main/animals/gorilla.jpg" alt="gorillas" class="pet__img">
+                            <div class="pets__content">
+                                <div class="pets__description">
+                                    <h5 class="pets__name">gorillas</h5>
+                                    <p class="pets__country">Native to Congo</p>
+                                </div>
+                                <img src="../../assets/icons/main/animals/banana-bamboo_icon.svg" class="pets__icon">
+                            </div>
+                        </article>
+                        <article class="pets__block card4">
+                            <img src="../../assets/images/main/animals/sloth.jpg" alt="sloth" class="pet__img">
+                            <div class="pets__content">
+                                <div class="pets__description">
+                                    <h5 class="pets__name">Two-toed Sloth</h5>
+                                    <p class="pets__country">Mesoamerica, South America</p>
+                                </div>
+                                <img src="../../assets/icons/main/animals/banana-bamboo_icon.svg" class="pets__icon">
+                            </div>
+                        </article>
+                        <article class="pets__block card5">
+                            <img src="../../assets/images/main/animals/cheetah.jpg" alt="cheetahs" class="pet__img">
+                            <div class="pets__content">
+                                <div class="pets__description">
+                                    <h5 class="pets__name">cheetahs</h5>
+                                    <p class="pets__country">Native to Africa</p>
+                                </div>
+                                <img src="../../assets/icons/main/animals/meet-fish_icon.svg" class="pets__icon">
+                            </div>
+                        </article>
+                        <article class="pets__block card6">
+                            <img src="../../assets/images/main/animals/penguin.jpg" alt="penguins" class="pet__img">
+                            <div class="pets__content">
+                                <div class="pets__description">
+                                    <h5 class="pets__name">Penguins</h5>
+                                    <p class="pets__country">Native to Antarctica</p>
+                                </div>
+                                <img src="../../assets/icons/main/animals/meet-fish_icon.svg" class="pets__icon">
+                            </div>
+                        </article>
                     </div>
-                </article>
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/eagle.jpg" alt="eagles" class="pet__img">
-                    <div class="pets__content pets-meat__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">eagles</h5>
-                            <p class="pets__country">Native to South America</p>
-                        </div>
-                        <div class="pets__icon pets__icon__meat"></div>
-                    </div>
-                </article>
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/gorilla.jpg" alt="gorillas" class="pet__img">
-                    <div class="pets__content pets-banana__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">gorillas</h5>
-                            <p class="pets__country">Native to Congo</p>
-                        </div>
-                        <div class="pets__icon pets__icon__banana"></div>
-                    </div>
-                </article>
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/sloth.jpg" alt="sloth" class="pet__img">
-                    <div class="pets__content pets-banana__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">Two-toed Sloth</h5>
-                            <p class="pets__country">Mesoamerica, South America</p>
-                        </div>
-                        <div class="pets__icon pets__icon__banana"></div>
-                    </div>
-                </article>
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/cheetah.jpg" alt="cheetahs" class="pet__img">
-                    <div class="pets__content pets-meat__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">cheetahs</h5>
-                            <p class="pets__country">Native to Africa</p>
-                        </div>
-                        <div class="pets__icon pets__icon__meat"></div>
-                    </div>
-                </article>
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/penguin.jpg" alt="penguins" class="pet__img">
-                    <div class="pets__content pets-meat__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">Penguins</h5>
-                            <p class="pets__country">Native to Antarctica</p>
-                        </div>
-                        <div class="pets__icon pets__icon__meat"></div>
-                    </div>
-                </article>
-                <article class="pets__block">
-                    <img src="../../assets/images/main/animals/alligator.jpg" alt="alligators" class="pet__img">
-                    <div class="pets__content pets-meat__content">
-                        <div class="pets__description">
-                            <h5 class="pets__name">Alligators</h5>
-                            <p class="pets__country">Native to Southeastern U. S.</p>
-                        </div>
-                        <div class="pets__icon pets__icon__meat"></div>
-                    </div>
-                </article>
+                    <div class="layout-3-column item-right"></div>
+                </div>
             </div>
             <div class="arrow__left">
                 <div class="arrow">&#8592;</div>
@@ -189,80 +185,82 @@
     <section class="testimonials">
         <div class="wrapper wrapper__testimonials">
             <h3 class="testimonials__title">Testimonials</h3>
-            <div class="layout-4-column">
-                <article class="testimonial">
-                    <div class="user">
-                        <div class="testimonial__icon"></div>
-                        <div class="user-name">
-                            <h5 class="name">Michael John</h5>
-                            <p class="location">Local Austria 
-                                <span> • </span> Today</p>
+            <div class="feedbacks">
+                <div class="layout-4-column feedback-wrapper">
+                    <article class="testimonial">
+                        <div class="user">
+                            <img src="../../assets/icons/main/testimonials/user_icon.svg" class="testimonial__icon" alt="user">
+                            <div class="user-name">
+                                <h5 class="name">Michael John</h5>
+                                <p class="location">Local Austria 
+                                    <span> • </span> Today</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feedback__text">
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals. 
-                        <br>
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
-                    </div>
-                </article>
-                <article class="testimonial">
-                    <div class="user">
-                        <div class="testimonial__icon oscar"></div>
-                        <div class="user-name">
-                            <h5 class="name">Oskar Samborsky</h5>
-                            <p class="location">Local Austria <span>•</span> Yesterday</p>
+                        <div class="feedback__text">
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals. 
+                            <br>
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
                         </div>
-                    </div>
-                    <div class="feedback__text">
-                        Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. <br>
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals. <br>
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
-                    </div>
-                </article>
-                <article class="testimonial">
-                    <div class="user">
-                        <div class="testimonial__icon osca"></div>
-                        <div class="user-name">
-                            <h5 class="name">Oska Samborska</h5>
-                            <div class="location">Local Austria <span> • </span> Yesterday</div>
+                    </article>
+                    <article class="testimonial">
+                        <div class="user">
+                            <img src="../../assets/icons/main/testimonials/oscar.svg" class="testimonial__icon" alt="user">
+                            <div class="user-name">
+                                <h5 class="name">Oskar Samborsky</h5>
+                                <p class="location">Local Austria <span>•</span> Yesterday</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feedback__text">
-                        Online zoo is one jf the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. Online zoo is one jf the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. <br>
-                        The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. Online zoo is one jf the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. Online zoo is one jf the ways to instill a love for animals.
-                    </div>
-                </article>
-                <article class="testimonial">
-                    <div class="user">
-                        <div class="testimonial__icon frederica"></div>
-                        <div class="user-name">
-                            <h5 class="name">Fredericka Michelin</h5>
-                            <div class="location">Local Austria <span> • </span> Yesterday</div>
+                        <div class="feedback__text">
+                            Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. <br>
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals. <br>
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
                         </div>
-                        
-                    </div>
-                    <div class="feedback__text">
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.<br>
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met.<br>
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
-                    </div>
-                </article>
-                <article class="testimonial">
-                    <div class="user">
-                        <div class="testimonial__icon mila"></div>
-                        <div class="user-name">
-                            <h5 class="name">Mila Riksha</h5>
-                            <div class="location">Local Austria <span> • </span> Yesterday</div>
+                    </article>
+                    <article class="testimonial">
+                        <div class="user">
+                            <img src="../../assets/icons/main/testimonials/frederica.svg" class="testimonial__icon" alt="user">
+                            <div class="user-name">
+                                <h5 class="name">Oska Samborska</h5>
+                                <div class="location">Local Austria <span> • </span> Yesterday</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="feedback__text">
-                        My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. <br>
-                        The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
-                    </div>
-                </article>
+                        <div class="feedback__text">
+                            Online zoo is one jf the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. Online zoo is one jf the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. <br>
+                            The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. Online zoo is one jf the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much ljves to watch gouillas. Online zoo is one jf the ways to instill a love for animals.
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <div class="user">
+                            <img src="../../assets/icons/main/testimonials/frederica.svg" class="testimonial__icon" alt="user">
+                            <div class="user-name">
+                                <h5 class="name">Fredericka Michelin</h5>
+                                <div class="location">Local Austria <span> • </span> Yesterday</div>
+                            </div>
+                            
+                        </div>
+                        <div class="feedback__text">
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.<br>
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met.<br>
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
+                        </div>
+                    </article>
+                    <article class="testimonial">
+                        <div class="user">
+                            <img src="../../assets/icons/main/testimonials/mila.svg" class="testimonial__icon" alt="user">
+                            <div class="user-name">
+                                <h5 class="name">Mila Riksha</h5>
+                                <div class="location">Local Austria <span> • </span> Yesterday</div>
+                            </div>
+                        </div>
+                        <div class="feedback__text">
+                            My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. <br>
+                            The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.The best online zoo I’ve met. My son delighted very much loves to watch gorillas. Online zoo is one of the ways to instill a love for animals.
+                        </div>
+                    </article>
+                </div>
             </div>
             <div class="scroll">
-                <input type="range" value="0" class="testimonial__scroll">
+                <input type="range" value="0" min="0" max="7" step="1" class="testimonial__scroll">
             </div>
             <button class="button feedback">leave feedback</button>
         </div>
@@ -309,6 +307,6 @@
             </div>
         </div>
     </footer>
-    <script src="js/script.js"></script>
+    <script type="module" src="js/script.js"></script>
 </body>
 </html>
