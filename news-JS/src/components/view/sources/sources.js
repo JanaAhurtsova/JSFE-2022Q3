@@ -1,4 +1,5 @@
 import './sources.css';
+// import { ISource } from '../../../types/interfaces';
 
 class Sources {
     draw(data) {
