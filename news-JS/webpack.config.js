@@ -10,13 +10,14 @@ const baseConfig = {
     module: {
         rules: [
             {
-                test: /\.css$/i,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
               test: /\.ts$/i,
               use: 'ts-loader',
+              include: [path.resolve(__dirname, 'src')],
               exclude: /node_modules/,
+            },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader'],
             },
         ],
     },
