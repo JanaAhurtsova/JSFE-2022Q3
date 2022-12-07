@@ -8,22 +8,20 @@ export interface DataSources { //[key: string]: string
   country: string
 }
 
-interface DataNews {
+export interface DataNews {
   status: string,
   totalResults: number,
-  articles: {
-    source: {
-      id: string | null,
-      name: string
-    },
-    author: string | null,
-    title: string,
-    description: string,
-    url: string,
-    urlToImage: string,
-    publishedAt: string,
-    content: string
-  }
+  source: {
+    id: string | null,
+    name: string
+  },
+  author: string | null,
+  title: string,
+  description: string,
+  url: string,
+  urlToImage: string,
+  publishedAt: string,
+  content: string
 }
 
 export interface SourcesInt {
