@@ -3,7 +3,7 @@ import { DataNews, NewsInt } from '../../../types/index';
 
 
 class News implements NewsInt {
-    draw(data: DataNews[]) {
+    public draw(data: DataNews[]): void {
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();

@@ -9,8 +9,6 @@ export interface DataSources { //[key: string]: string
 }
 
 export interface DataNews {
-  status: string,
-  totalResults: number,
   source: {
     id: string | null,
     name: string
@@ -30,4 +28,15 @@ export interface SourcesInt {
 
 export interface NewsInt {
   draw: (data: DataNews[]) => void;
+}
+
+export type DataNewsDraw = {
+  status: string,
+  totalResults: number,
+  articles: DataNews[]
+}
+
+export type DataSourcesDraw = {
+  status: string,
+  sources: DataSources[]
 }
