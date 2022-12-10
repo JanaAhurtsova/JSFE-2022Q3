@@ -3,11 +3,11 @@ import { Endpoints } from '../../types/enum';
 
 class Loader {
     baseLink: string;
-    private options: Option;
+    private _options: Option;
 
     constructor(baseLink: string, options: Option) {
         this.baseLink = baseLink;
-        this.options = options;
+        this._options = options;
     }
 
     getResp(
@@ -30,7 +30,7 @@ class Loader {
     }
 
     makeUrl(options: Option, endpoint: Endpoints) {
-        const urlOptions = { ...this.options, ...options };
+        const urlOptions = { ...this._options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
         Object.keys(urlOptions).forEach((key) => {

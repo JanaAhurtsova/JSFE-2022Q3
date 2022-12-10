@@ -42,6 +42,14 @@ export type DataSourcesDraw = {
     sources: DataSources[];
 };
 
+export interface Application {
+    readonly news: NewsInt;
+    readonly sources: SourcesInt;
+
+    drawNews(data: DataNewsDraw | undefined): void;
+    drawSources(data: DataSourcesDraw | undefined): void;
+}
+
 export type Option = {
     apiKey?: string;
     sources?: string;
