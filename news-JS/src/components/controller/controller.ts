@@ -3,7 +3,7 @@ import { Endpoints } from '../../types/enum';
 import { Callback, DataSourcesDraw, DataNewsDraw } from '../../types/index';
 
 class AppController extends AppLoader {
-    getSources(callback: Callback<DataSourcesDraw>): void {
+    public getSources(callback: Callback<DataSourcesDraw>): void {
         super.getResp(
             {
                 endpoint: Endpoints.SOURCES,

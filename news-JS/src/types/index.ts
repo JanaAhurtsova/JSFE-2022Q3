@@ -1,14 +1,7 @@
 import { Endpoints } from './enum'
 
 export type DataSources = {
-    //[key: string]: string
-    id: string;
-    name: string;
-    description: string;
-    url: string;
-    category: string;
-    language: string;
-    country: string;
+    [key: string]: string
 };
 
 export type DataNews = {
@@ -45,16 +38,8 @@ export type DataSourcesDraw = {
 };
 
 export interface ApplicationView {
-    readonly news: NewsInt;
-    readonly sources: SourcesInt;
-
     drawNews(data: DataNewsDraw | undefined): void;
     drawSources(data: DataSourcesDraw | undefined): void;
-}
-
-export interface Controller {
-    getSources(callback: Callback<DataSourcesDraw>): void;
-    getNews(e: Event, callback: Callback<DataNewsDraw>): void;
 }
 
 export type Option = {
@@ -67,26 +52,23 @@ export interface Callback<T> {
 }
 
 export interface Application {
-    controller: Controller;
-    view: ApplicationView;
     start(): void;
 }
 
-// export interface ILoader {
-//     baseLink: string;
-//     private _options: Option;
+export interface LoaderInt {
+    getResp(
+      { endpoint, options }: { endpoint: Endpoints; options?: Partial<Option> },
+      callback: () => void
+    ): void;
 
-//     getResp(
-//       { endpoint, options }: { endpoint: Endpoints; options?: Option },
-//       callback: () => void
-//     ): void;
+    errorHandler(res: Response): Response;
 
-//     errorHandler(res: Response): Response;
-//     makeUrl(options: Option, endpoint: Endpoints): string;
-//     load(
-//       method: string,
-//       endpoint: Endpoints,
-//       callback: Callback<DataSourcesDraw | DataNewsDraw>,
-//       options: Option
-//   ): void;
-// }
+    makeUrl(options: Partial<Option>, endpoint: Endpoints): string;
+
+    load(
+      method: string,
+      endpoint: Endpoints,
+      callback: Callback<DataSourcesDraw | DataNewsDraw>,
+      options:Partial<Option>
+  ): void;
+}

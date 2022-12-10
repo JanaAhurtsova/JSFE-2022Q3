@@ -3,15 +3,15 @@ import { AppView } from '../view/appView';
 import { DataSourcesDraw, DataNewsDraw, Application } from '../../types/index';
 
 class App implements Application {
-    controller: AppController;
-    view: AppView;
+    readonly controller: AppController;
+    readonly view: AppView;
 
     constructor() {
         this.controller = new AppController();
         this.view = new AppView();
     }
 
-    start(): void {
+    public start(): void {
         const source = document.querySelector('.sources');
 
         if (!(source && source instanceof HTMLDivElement)) {

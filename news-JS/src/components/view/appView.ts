@@ -3,22 +3,22 @@ import Sources from './sources/sources';
 import { DataSourcesDraw, DataNewsDraw, ApplicationView } from '../../types/index';
 
 export class AppView implements ApplicationView {
-    readonly news: News;
-    readonly sources: Sources;
+    private _news: News;
+    private _sources: Sources;
 
     constructor() {
-        this.news = new News();
-        this.sources = new Sources();
+        this._news = new News();
+        this._sources = new Sources();
     }
 
     public drawNews(data: DataNewsDraw | undefined): void {
         const values = data?.articles ? data?.articles : [];
-        this.news.draw(values);
+        this._news.draw(values);
     }
 
     public drawSources(data: DataSourcesDraw | undefined): void {
         const values = data?.sources ? data?.sources : [];
-        this.sources.draw(values);
+        this._sources.draw(values);
     }
 }
 

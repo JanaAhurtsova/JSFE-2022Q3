@@ -30,11 +30,9 @@ class News implements NewsInt {
             if (!(newsMetaPhoto && newsMetaPhoto instanceof HTMLDivElement)) {
                 throw new Error('Something has gone very, very wrong.');
             }
-
             if (!(newsMetaDate && newsMetaDate instanceof HTMLLIElement)) {
                 throw new Error('Something has gone very, very wrong.');
             }
-            console.log(item);
 
             if (idx % 2) newsItem.classList.add('alt');
             newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
