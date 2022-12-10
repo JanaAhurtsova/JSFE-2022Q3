@@ -3,15 +3,15 @@ import { Endpoints } from '../../types/enum';
 
 class Loader {
     baseLink: string;
-    options: Option;
+    private options: Option;
 
-    constructor( baseLink: string, options:Option) {
+    constructor(baseLink: string, options: Option) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {apiKey: ''} }: {endpoint: Endpoints, options?: Option},
+        { endpoint, options = {} }: { endpoint: Endpoints; options?: Option },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -40,7 +40,12 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: Endpoints, callback: Callback<DataSourcesDraw | DataNewsDraw>, options: Option = { apiKey: ''}) {
+    load(
+        method: string,
+        endpoint: Endpoints,
+        callback: Callback<DataSourcesDraw | DataNewsDraw>,
+        options: Option = {}
+    ) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

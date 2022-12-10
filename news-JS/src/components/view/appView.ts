@@ -1,11 +1,11 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import {DataSourcesDraw, DataNewsDraw} from '../../types/index';
+import { DataSourcesDraw, DataNewsDraw } from '../../types/index';
 
 export class AppView {
-    news: News;
-    sources: Sources;
-    
+    readonly news: News;
+    readonly sources: Sources;
+
     constructor() {
         this.news = new News();
         this.sources = new Sources();

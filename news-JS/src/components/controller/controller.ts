@@ -17,15 +17,15 @@ class AppController extends AppLoader {
         const newsContainer = e.currentTarget;
 
         if (!(target && newsContainer && newsContainer instanceof HTMLElement)) {
-          throw new Error('Something has gone very, very wrong.');
+            throw new Error('Something has gone very, very wrong.');
         }
 
         while (target !== newsContainer) {
             if (target.classList.contains('source__item')) {
                 const sourceId = target.getAttribute('data-source-id');
 
-                if(!sourceId) {
-                  throw new Error('Something has gone very, very wrong.');
+                if (!sourceId) {
+                    throw new Error('Something has gone very, very wrong.');
                 }
 
                 if (newsContainer.getAttribute('data-source') !== sourceId) {
