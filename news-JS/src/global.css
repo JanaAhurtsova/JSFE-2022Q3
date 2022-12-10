@@ -19,17 +19,42 @@ footer {
     align-items: center;
     justify-content: center;
 }
+
 footer .copyright {
     font-size: 14px;
     color: #333;
     text-align: center;
 }
+
 footer .copyright a {
     color: #444;
 }
 footer .copyright a:hover {
     color: #555;
 }
+
 footer .copyright:before {
     content: '©';
+}
+
+.rss {
+  width: 10%;
+  height: 30px;
+  background: url("./assets/rs_school_js.svg") center center/contain
+    no-repeat;
+  filter: invert(1) opacity(.3);
+  transition: .2s;
+}
+
+.rss:hover,
+.github:hover {
+  filter: invert(1) opacity(.7);
+}
+
+.github {
+  width: 5%;
+  height: 30px;
+  background: url("./assets/github.svg") center center/contain no-repeat;
+  filter: invert(1) opacity(.3);
+  transition: .2s;
 }
