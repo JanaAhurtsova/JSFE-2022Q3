@@ -1,20 +1,17 @@
-import AppView from "../view/appView";
-
-type apiKey = {
-  apiKey: string
-}
+import { Option, Callback, DataSourcesDraw, DataNewsDraw } from '../../types/index';
+import { Endpoints } from '../../types/enum';
 
 class Loader {
     baseLink: string;
-    options: apiKey;
+    options: Option;
 
-    constructor( baseLink: string, options: apiKey) {
+    constructor( baseLink: string, options:Option) {
         this.baseLink = baseLink;
         this.options = options;
     }
 
     getResp(
-        { endpoint, options = {apiKey: ''} }: {endpoint: string, options: apiKey},
+        { endpoint, options = {apiKey: ''} }: {endpoint: Endpoints, options?: Option},
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -32,7 +29,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: apiKey, endpoint: string) {
+    makeUrl(options: Option, endpoint: Endpoints) {
         const urlOptions = { ...this.options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -43,7 +40,7 @@ class Loader {
         return url.slice(0, -1);
     }
 
-    load(method: string, endpoint: string, callback: (data: AppView) => void, options: apiKey = { apiKey: ''}) {
+    load(method: string, endpoint: Endpoints, callback: Callback<DataSourcesDraw | DataNewsDraw>, options: Option = { apiKey: ''}) {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

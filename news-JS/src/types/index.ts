@@ -1,4 +1,4 @@
-export interface DataSources { //[key: string]: string
+export type DataSources = { //[key: string]: string
   id: string,
   name: string,
   description: string,
@@ -8,7 +8,7 @@ export interface DataSources { //[key: string]: string
   country: string
 }
 
-export interface DataNews {
+export type DataNews = {
   source: {
     id: string | null,
     name: string
@@ -40,3 +40,10 @@ export type DataSourcesDraw = {
   status: string,
   sources: DataSources[]
 }
+
+export type Option = {
+  apiKey?: string,
+  sources?: string
+}
+
+export type Callback<T> = (data?: T) => void;
