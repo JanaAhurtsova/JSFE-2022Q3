@@ -1,5 +1,6 @@
 import './news.css';
 import { DataNews, NewsInt } from '../../../types/index';
+import image = require('../../../assets/img/news_placeholder.jpg');
 
 class News implements NewsInt {
     public draw(data: DataNews[]): void {
@@ -35,7 +36,7 @@ class News implements NewsInt {
             }
 
             if (idx % 2) newsItem.classList.add('alt');
-            newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || 'img/news_placeholder.jpg'})`;
+            newsMetaPhoto.style.backgroundImage = `url(${item.urlToImage || image})`;
             newsMetaAuthor.textContent = item.author || item.source.name;
             newsMetaDate.textContent = item.publishedAt.slice(0, 10).split('-').reverse().join('-');
 
