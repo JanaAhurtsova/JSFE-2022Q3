@@ -1,8 +1,8 @@
 import AppController from '../controller/controller';
 import { AppView } from '../view/appView';
-import { DataSourcesDraw, DataNewsDraw } from '../../types/index';
+import { DataSourcesDraw, DataNewsDraw, Application } from '../../types/index';
 
-class App {
+class App implements Application {
     controller: AppController;
     view: AppView;
 
@@ -11,7 +11,7 @@ class App {
         this.view = new AppView();
     }
 
-    start() {
+    start(): void {
         const source = document.querySelector('.sources');
 
         if (!(source && source instanceof HTMLDivElement)) {

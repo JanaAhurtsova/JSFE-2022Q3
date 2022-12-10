@@ -3,15 +3,15 @@ import { Endpoints } from '../../types/enum';
 
 class Loader {
     baseLink: string;
-    private _options: Option;
+    private _options: Partial<Option>;
 
-    constructor(baseLink: string, options: Option) {
+    constructor(baseLink: string, options: Partial<Option>) {
         this.baseLink = baseLink;
         this._options = options;
     }
 
     getResp(
-        { endpoint, options = {} }: { endpoint: Endpoints; options?: Option },
+        { endpoint, options = {} }: { endpoint: Endpoints; options?: Partial<Option> },
         callback = () => {
             console.error('No callback for GET response');
         }
@@ -19,7 +19,7 @@ class Loader {
         this.load('GET', endpoint, callback, options);
     }
 
-    errorHandler(res: Response) {
+    errorHandler(res: Response): Response {
         if (!res.ok) {
             if (res.status === 401 || res.status === 404)
                 console.log(`Sorry, but there is ${res.status} error: ${res.statusText}`);
@@ -29,7 +29,7 @@ class Loader {
         return res;
     }
 
-    makeUrl(options: Option, endpoint: Endpoints) {
+    makeUrl(options: Partial<Option>, endpoint: Endpoints): string {
         const urlOptions = { ...this._options, ...options };
         let url = `${this.baseLink}${endpoint}?`;
 
@@ -44,8 +44,8 @@ class Loader {
         method: string,
         endpoint: Endpoints,
         callback: Callback<DataSourcesDraw | DataNewsDraw>,
-        options: Option = {}
-    ) {
+        options: Partial<Option> = {}
+    ): void {
         fetch(this.makeUrl(options, endpoint), { method })
             .then(this.errorHandler)
             .then((res) => res.json())

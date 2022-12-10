@@ -1,8 +1,8 @@
 import News from './news/news';
 import Sources from './sources/sources';
-import { DataSourcesDraw, DataNewsDraw, Application } from '../../types/index';
+import { DataSourcesDraw, DataNewsDraw, ApplicationView } from '../../types/index';
 
-export class AppView implements Application {
+export class AppView implements ApplicationView {
     readonly news: News;
     readonly sources: Sources;
 

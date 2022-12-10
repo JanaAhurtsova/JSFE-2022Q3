@@ -3,7 +3,7 @@ import { Endpoints } from '../../types/enum';
 import { Callback, DataSourcesDraw, DataNewsDraw } from '../../types/index';
 
 class AppController extends AppLoader {
-    getSources(callback: Callback<DataSourcesDraw>) {
+    getSources(callback: Callback<DataSourcesDraw>): void {
         super.getResp(
             {
                 endpoint: Endpoints.SOURCES,
@@ -12,7 +12,7 @@ class AppController extends AppLoader {
         );
     }
 
-    public getNews(e: Event, callback: Callback<DataNewsDraw>) {
+    public getNews(e: Event, callback: Callback<DataNewsDraw>): void {
         let target = e.target as HTMLElement;
         const newsContainer = e.currentTarget;
 
