@@ -11,7 +11,8 @@
 .sources::-webkit-scrollbar {
     width: 24px;
     height: 6px;
-    background-color: #b3eaff;
+    background-color: #ffffff;
+    border-radius: 9em;
 }
 
 .sources::-webkit-scrollbar-thumb {
@@ -62,8 +63,38 @@
 
 @media (max-width: 768px) {
 
+    .sources {
+        height: 90px;
+    }
+
+    .source__item {
+        margin: 0.3em;
+        padding: .6em 1em;
+    }
+
+    .source__item-name {
+        font-size: .8em;
+    }
+
     .search-item {
         width: 50%;
     }
+
+}
+
+@media (max-width: 390px) {
+
+  .source__item {
+      margin: 0.25em;
+      padding: .3em .7em;
+  }
+
+  .source__item-name {
+      font-size: .7em;
+  }
+
+  .form {
+    padding: 0 4px;
+  }
 
 }

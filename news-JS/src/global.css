@@ -8,13 +8,13 @@ header {
     padding: 10px 30px;
 }
 
-header h1 {
+.logo {
     font-size: 40px;
     font-weight: 800;
     text-shadow: 5px 5px 0px rgba(255,255,255,0.2);
 }
 
-header h1 span {
+.logo span {
   color: #70d6ff;
 }
 
@@ -67,4 +67,25 @@ footer .copyright:before {
 
 input {
     appearance: none;
+}
+
+
+@media (max-width: 500px) {
+
+    .logo {
+        font-size: 35px;
+    }
+
+    .rss {
+        width: 15%;
+    }
+
+}
+
+@media (max-width: 390px) {
+
+    header {
+        padding-left: 4px;
+    }
+
 }
