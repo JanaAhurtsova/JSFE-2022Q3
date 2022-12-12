@@ -1,7 +1,7 @@
-import { Endpoints } from './enum'
+import { Endpoints } from './enum';
 
 export type DataSources = {
-    [key: string]: string
+    [key: string]: string;
 };
 
 export type DataNews = {
@@ -56,19 +56,16 @@ export interface Application {
 }
 
 export interface LoaderInt {
-    getResp(
-      { endpoint, options }: { endpoint: Endpoints; options?: Partial<Option> },
-      callback: () => void
-    ): void;
+    getResp({ endpoint, options }: { endpoint: Endpoints; options?: Partial<Option> }, callback: () => void): void;
 
     errorHandler(res: Response): Response;
 
     makeUrl(options: Partial<Option>, endpoint: Endpoints): string;
 
     load(
-      method: string,
-      endpoint: Endpoints,
-      callback: Callback<DataSourcesDraw | DataNewsDraw>,
-      options:Partial<Option>
-  ): void;
+        method: string,
+        endpoint: Endpoints,
+        callback: Callback<DataSourcesDraw | DataNewsDraw>,
+        options: Partial<Option>
+    ): void;
 }
