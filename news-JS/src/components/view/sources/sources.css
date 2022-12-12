@@ -8,6 +8,22 @@
     font: 300 1em 'Fira Sans', sans-serif;
 }
 
+.sources::-webkit-scrollbar {
+    width: 24px;
+    height: 6px;
+    background-color: #b3eaff;
+}
+
+.sources::-webkit-scrollbar-thumb {
+  background-color: #30c5ff;
+  border-radius: 9em;
+  box-shadow: inset 1px 1px 10px #63dfa9;
+}
+
+.sources::-webkit-scrollbar-thumb:hover {
+  background-color: #3fcc59;
+}
+
 .source__item {
     background: none;
     border: 2px solid #30c5ff;
@@ -31,4 +47,23 @@
 .source__item-name {
     font-weight: 400;
     white-space: nowrap;
+}
+
+.form {
+    padding: 0 30px;
+}
+
+.search-item {
+    width: 40%;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+
+    .search-item {
+        width: 50%;
+    }
+
 }

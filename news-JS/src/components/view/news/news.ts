@@ -4,6 +4,7 @@ import image = require('../../../assets/img/news_placeholder.jpg');
 
 class News implements NewsInt {
     public draw(data: DataNews[]): void {
+        console.log(data);
         const news = data.length >= 10 ? data.filter((_item, idx) => idx < 10) : data;
 
         const fragment = document.createDocumentFragment();
