@@ -30,7 +30,7 @@ const baseConfig = {
         extensions: [ '.ts', '.js' ],
     },
     output: {
-        filename: 'index.js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, './dist'),
         assetModuleFilename: './assets/[name].[contenthash][ext][query]',
     },
@@ -42,7 +42,9 @@ const baseConfig = {
         }),
         new CleanWebpackPlugin(),
         new ESLintPlugin({ extensions: 'ts' }),
-        new MiniCssExtractPlugin(),
+        new MiniCssExtractPlugin({
+          filename: '[name].[contenthash].css',
+        }),
     ],
 };
 
