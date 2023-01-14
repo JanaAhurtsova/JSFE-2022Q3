@@ -1,0 +1,19 @@
+.flag {
+  background: url('../assets/racing-flags.svg') center center/cover no-repeat;
+  width: 4rem;
+  height: 5.5rem;
+  position: absolute;
+  right: 7rem;
+}
+
+.car {
+  display: block;
+  height: 4.5rem;
+  width: 6rem;
+
+  svg {
+    width: 6rem;
+    height: 5.5rem;
+  }
+
+}

@@ -1,0 +1,38 @@
+.button {
+  @include button();
+  text-align: center;
+}
+
+.buttons {
+  @include flex($align: flex-start);
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.submit {
+  background-color: $color-button;
+  width: 8rem;
+  border-radius: .5rem;
+  color: $color-background;
+
+  &:hover {
+    background-color: $color-hover;
+  }
+}
+
+.buttons-track {
+  @include flex($justify: flex-start);
+  gap: 1rem;
+}
+
+.controls-track {
+  @include flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.button:disabled,
+.input:disabled,
+.submit:disabled {
+  background-color: $color-disabled;
+}

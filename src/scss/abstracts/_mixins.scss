@@ -1,0 +1,28 @@
+@mixin font($size, $height: $size, $weight: 400, $style: normal) {
+  font-size: $size;
+  font-style: $style;
+  font-weight: $weight;
+  line-height: $height;
+  text-transform: uppercase;
+}
+
+@mixin button() {
+  width: fit-content;
+  padding: .2rem 1rem;
+  cursor: pointer;
+  border-radius: 1rem;
+  border: none;
+  background-color: $color-button;
+  color: $color-background;
+  font-weight: 700;
+
+  &:hover {
+    background-color: $color-hover;
+  }
+}
+
+@mixin flex($justify: space-between, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}

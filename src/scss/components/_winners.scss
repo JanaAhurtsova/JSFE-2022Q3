@@ -1,0 +1,27 @@
+.table {
+  border-collapse: collapse;
+
+  thead {
+    background-color: $color-button;
+  }
+
+  th {
+    color: $color-background;
+    border: .1rem solid $color-text;
+  }
+
+  td {
+    text-align: center;
+    border: .1rem solid $color-text;
+  }
+
+  svg {
+    width: 5.5rem;
+    height: 4.5rem;
+  }
+
+  .table__button {
+    cursor: pointer;
+  }
+
+}

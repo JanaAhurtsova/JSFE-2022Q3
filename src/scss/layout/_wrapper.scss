@@ -1,0 +1,12 @@
+.wrapper {
+  @include flex($align: stretch, $justify: flex-start);
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.garage__wrapper {
+  @include flex($align: stretch);
+  flex-direction: column;
+  gap: .5rem;
+}

@@ -1,10 +1,9 @@
-// Generated using webpack-cli https://github.com/webpack/webpack-cli
-
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CopyPlugin = require("copy-webpack-plugin");
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 const isProduction = process.env.NODE_ENV == 'production';
 
@@ -22,6 +21,9 @@ const config = {
     open: true,
     host: 'localhost',
   },
+  experiments: {
+    topLevelAwait: true
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './src/index.html'),
@@ -33,8 +35,7 @@ const config = {
         { from: path.resolve(__dirname, './src/assets'), to: path.resolve(__dirname, 'dist/assets') },
       ],
     }),
-    // Add your plugins here
-    // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+    new NetlifyPlugin({}),
   ],
   module: {
     rules: [
@@ -55,9 +56,6 @@ const config = {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
         type: 'asset',
       },
-
-      // Add your rules for custom modules here
-      // Learn more about loaders from https://webpack.js.org/loaders/
     ],
   },
   resolve: {

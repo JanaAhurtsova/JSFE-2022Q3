@@ -1,0 +1,25 @@
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+* {
+  @include font($size: 1.2rem, $height: 140%);
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: $color-text;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  transition: all 0.3s linear;
+}
+
+input {
+  appearance: none;
+}
+
+li {
+  list-style-type: none;
+}

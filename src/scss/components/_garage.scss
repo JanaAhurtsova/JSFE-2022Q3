@@ -1,0 +1,33 @@
+.create-name,
+.edit-name {
+  border: .1rem solid $color-button;
+  border-radius: 2rem;
+  padding: 0 .5rem;
+}
+
+.form {
+  @include flex($justify: flex-start);
+  gap: 1rem;
+}
+
+.garage {
+  @include flex($align: stretch, $justify: flex-start);
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.track {
+  @include flex($align: stretch);
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.road__wrapper {
+  @include flex($justify: flex-start, $align: flex-end);
+  width: 100%;
+}
+
+.road {
+  @include flex();
+  border-bottom: .2rem dotted $color-text;
+}
