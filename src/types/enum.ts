@@ -1,11 +1,22 @@
 const enum PageIds {
   GARAGE = 'garage',
-  WINNERS = 'winners'
-};
+  WINNERS = 'winners',
+}
 
 const enum SortWinners {
   WINS = 'wins',
   TIMES = 'times',
 }
 
-export { PageIds, SortWinners }
+const enum Sort {
+  ID = 'id',
+  WINS = 'wins',
+  TIME = 'time',
+}
+
+const enum Order {
+  ASC = 'ASC',
+  DESC = 'DESC',
+}
+
+export { PageIds, SortWinners, Sort, Order };

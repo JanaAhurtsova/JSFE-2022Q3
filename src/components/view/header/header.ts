@@ -1,4 +1,4 @@
-import { PageIds } from "../../../types/enum";
+import { PageIds } from '../../../types/enum';
 
 export default class Header {
   public header: HTMLElement;
@@ -9,8 +9,18 @@ export default class Header {
 
   constructor() {
     this.header = this.createDomNode('header', ['header']);
-    this.toGarage = this.createDomNode('a', ['button', 'button__garage'], `#${PageIds.GARAGE}`, 'to garage') as HTMLLinkElement;
-    this.toWinners = this.createDomNode('a', ['button', 'button__winners'], `#${PageIds.WINNERS}`, 'to winners') as HTMLLinkElement;
+    this.toGarage = this.createDomNode(
+      'a',
+      ['button', 'button__garage'],
+      `#${PageIds.GARAGE}`,
+      'to garage'
+    ) as HTMLLinkElement;
+    this.toWinners = this.createDomNode(
+      'a',
+      ['button', 'button__winners'],
+      `#${PageIds.WINNERS}`,
+      'to winners'
+    ) as HTMLLinkElement;
 
     this.append();
   }
@@ -19,10 +29,15 @@ export default class Header {
     this.header.append(this.toGarage, this.toWinners);
   }
 
-  private createDomNode(element: string, classElement: string[], attr?: string, text?: string): HTMLElement | HTMLLinkElement {
+  private createDomNode(
+    element: string,
+    classElement: string[],
+    attr?: string,
+    text?: string
+  ): HTMLElement | HTMLLinkElement {
     const node = document.createElement(element);
     node.classList.add(...classElement);
-    if(attr) {
+    if (attr) {
       node.setAttribute('href', attr);
     }
     if (text !== undefined) {

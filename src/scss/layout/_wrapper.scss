@@ -5,7 +5,8 @@
   padding: 1rem;
 }
 
-.garage__wrapper {
+.garage__wrapper,
+.winners__wrapper {
   @include flex($align: stretch);
   flex-direction: column;
   gap: .5rem;

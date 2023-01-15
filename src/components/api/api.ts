@@ -1,4 +1,4 @@
-import { TResponseGetCars, TCar, TGetCar, TSort, TOrder, TWinner, TWinners, TMoveCar } from '../../types/types';
+import { TResponseGetCars, TCar, TGetCar, TWinner, TWinners, TMoveCar } from '../../types/types';
 
 const base = `http://localhost:3000`;
 
@@ -9,7 +9,6 @@ const winners = `${base}/winners`;
 export default class Api {
   public static async getCars(page: number, limit = 7): Promise<TResponseGetCars> {
     const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
-
     return {
       items: await response.json(),
       count: response.headers.get(`X-Total-Count`),
@@ -29,7 +28,6 @@ export default class Api {
       },
       body: JSON.stringify(data),
     });
-
     return await response.json();
   }
 
@@ -37,7 +35,6 @@ export default class Api {
     const response = await fetch(`${garage}/${id}`, {
       method: 'DELETE',
     });
-
     return await response.json();
   }
 
@@ -49,7 +46,6 @@ export default class Api {
       },
       body: JSON.stringify(data),
     });
-
     return await response.json();
   }
 
@@ -57,7 +53,6 @@ export default class Api {
     const response = await fetch(`${engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
     });
-
     return await response.json();
   }
 
@@ -65,23 +60,21 @@ export default class Api {
     const response = await fetch(`${engine}?id=${id}&status=started`, {
       method: 'PATCH',
     });
-
     return await response.json();
   }
 
   public static async driveCar(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=drive`, {
-      method: 'PATCH'
-    })
-
-    return response.status === 200 ? await response.json() : {'success': false};
-  };
+      method: 'PATCH',
+    }).catch();
+    return response.status === 200 ? response.json() : { success: false };
+  }
 
   public static async getWinners(
     page: number,
     limit = 10,
-    sort?: ReadonlyArray<TSort>,
-    order?: TOrder
+    sort?: string | null,
+    order?: string | null
   ): Promise<TWinners> {
     let sortOrder = '';
     if (sort && order) {
@@ -92,14 +85,15 @@ export default class Api {
     const items = await response.json();
 
     return {
-      items: await Promise.all(items.map(async (winner: TWinner) => ({...winner, car: await this.getCar(winner.id)}))),
+      items: await Promise.all(
+        items.map(async (winner: TWinner) => ({ ...winner, car: await this.getCar(winner.id) }))
+      ),
       count: response.headers.get(`X-Total-Count`),
     };
   }
 
   public static async getWinner(id: number): Promise<TWinner> {
     const response = await fetch(`${winners}/${id}`);
-
     return await response.json();
   }
 
@@ -107,19 +101,17 @@ export default class Api {
     const response = await fetch(`${winners}`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
-
     return await response.json();
   }
 
   public static async deleteWinner(id: number): Promise<object> {
     const response = await fetch(`${winners}/${id}`, {
-      method: 'DELETE'
-    })
-
+      method: 'DELETE',
+    });
     return await response.json();
   }
 
@@ -127,11 +119,23 @@ export default class Api {
     const response = await fetch(`${winners}/${id}`, {
       method: 'PUT',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data)
+      body: JSON.stringify(data),
     });
-
     return await response.json();
+  }
+
+  public static async saveWinner(id: number, time: number) {
+    const status = (await fetch(`${winners}/${id}`)).status;
+    if (status === 404) {
+      await Api.createWinner({id, wins: 1, time})
+    } else {
+      const winner = await Api.getWinner(id);
+      await Api.updateWinner(id, {
+        wins: winner.wins + 1,
+        time: time > winner.time ? winner.time : time,
+      })
+    }
   }
 }

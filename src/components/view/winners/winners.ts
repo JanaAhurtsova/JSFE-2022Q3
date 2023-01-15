@@ -1,26 +1,31 @@
-import Page from "../templates/page";
-import data from "../../defaultData/data";
-import {SortWinners} from "../../../types/enum";
-import CreateTrack from "../garage/track/createCartTrack";
-
+import Page from '../templates/page';
+import data from '../../defaultData/data';
+import { SortWinners } from '../../../types/enum';
+import CreateTrack from '../garage/track/createCartTrack';
 
 export default class Winners extends Page {
-  constructor(id: string) {
+  constructor(id = 'winners') {
     super(id);
   }
 
-  private renderWinnersTable() {
+  public renderWinnersTable() {
     return `
+    <h1>Winners (${data.winnersCount})</h1>
+    <h2>Page #${data.winnersPage}</h2>
     <table class="table" cellspacing="0" cellpadding="0">
       <thead>
         <th>Number</th>
         <th>Car</th>
         <th>Name</th>
-        <th class="table__button sort-wins ${data.sort === SortWinners.WINS ? data.order : ''}" id="sort-wins">Wins</th>
-        <th class="table__button sort-times ${data.sort === SortWinners.TIMES ? data.order : ''}" id="sort-times">Best Time(sec)</th>
+        <th class="table__button sort-wins ${data.sort === SortWinners.WINS ? data.order : ''}">Wins</th>
+        <th class="table__button sort-time ${
+          data.sort === SortWinners.TIMES ? data.order : ''
+        }">Best Time(sec)</th>
       </thead>
       <tbody>
-        ${data.winners.map((winner, index) => `
+        ${data.winners
+          .map(
+            (winner, index) => `
           <tr>
             <td>${index + 1}</td>
             <td>${CreateTrack.getCarImage(winner.car.color)}</td>
@@ -28,20 +33,22 @@ export default class Winners extends Page {
             <td>${winner.wins}</td>
             <td>${winner.time}</td>
           </tr>
-        `).join('')}
+        `
+          )
+          .join('')}
       </tbody>
-    </table>`
+    </table>`;
   }
 
   public render() {
     const content = `
-      <h1>Winners (${data.winnersCount})</h1>
-      <h2>Page #${data.winnersPage}</h2>
-      ${this.renderWinnersTable()}
+      <div class="winners__wrapper">
+        ${this.renderWinnersTable()}
+      </div>
       <div class="pagination">
-        <button class="button" id="prev" disabled>Previous</button>
-        <button class="button" id="next" disabled>Next</button>
-      </div>`
+        <button class="button prev" id="prev__winners" disabled>Previous</button>
+        <button class="button next" id="next__winners" disabled>Next</button>
+      </div>`;
     this.container.innerHTML = content;
     return this.container;
   }
