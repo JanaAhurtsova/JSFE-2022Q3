@@ -24,9 +24,11 @@ export default class Navigation {
     if (idPage === PageIds.GARAGE) {
       data.defaultPageId = idPage;
       page = new GaragePage(data.defaultPageId);
+      UpdateStates.updateStateGarage();
     } else if (idPage === PageIds.WINNERS) {
       data.defaultPageId = idPage;
       page = new Winners(data.defaultPageId = idPage);
+      UpdateStates.updateStateWinners();
     }
 
     if (page) {
@@ -51,7 +53,7 @@ export default class Navigation {
       if (data.defaultPageId === 'garage') {
         data.carsPage = data.carsPage + 1;
         await UpdateStates.updateStateGarage();
-        console.log(data.carsPage);
+        this.updateWrappers.updateGarage();
       } else if (data.defaultPageId === 'winners') {
         data.winnersPage = data.winnersPage + 1;
         await UpdateStates.updateStateWinners();
@@ -62,7 +64,7 @@ export default class Navigation {
 
   public async clickToPrevPage(event: Event) {
     const target = event.target as HTMLButtonElement;
-    if (target.closest('.next')) {
+    if (target.closest('.prev')) {
       if (data.defaultPageId === 'garage') {
         data.carsPage = data.carsPage - 1;
         await UpdateStates.updateStateGarage();

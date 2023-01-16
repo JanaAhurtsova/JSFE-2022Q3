@@ -20,6 +20,8 @@ export default class EditGarage {
     await Api.createCar({name, color});
     await UpdateStates.updateStateGarage();
     this.updateGarage();
+    (document.querySelector(`.create-name`) as HTMLInputElement).value = '';
+    (document.querySelector(`.create-color`) as HTMLInputElement).value = '#000000';
   }
 
   private updateGarage() {
@@ -58,12 +60,13 @@ export default class EditGarage {
   }
 
   public async editCar() {
-    let name = (document.querySelector(`.edit-name`) as HTMLInputElement).value;
-    let color = (document.querySelector(`.edit-color`) as HTMLInputElement).value;
+    const name = (document.querySelector(`.edit-name`) as HTMLInputElement).value;
+    const color = (document.querySelector(`.edit-color`) as HTMLInputElement).value;
     await Api.updateCar(this.selectedCar!.id, {name, color});
     await UpdateStates.updateStateGarage();
     this.updateGarage();
-    name = '';
+    (document.querySelector(`.edit-name`) as HTMLInputElement).value = '';
+    (document.querySelector(`.edit-color`) as HTMLInputElement).value = '#000000';
     (document.querySelector('.edit-name') as HTMLInputElement).disabled = true;
     (document.querySelector('.edit-color') as HTMLInputElement).disabled = true;
     (document.querySelector('.edit-submit') as HTMLInputElement).disabled = true;
