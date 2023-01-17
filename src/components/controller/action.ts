@@ -1,4 +1,5 @@
 import Api from '../api/api';
+import data from '../defaultData/data';
 import Animation from './animation';
 
 export default class CarActions {
@@ -14,18 +15,24 @@ export default class CarActions {
     const start = document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement;
     start.disabled = true;
 
-    const {velocity, distance} = await Api.startEngine(id);
-    const time = Math.round(distance/velocity);
+    const { velocity, distance } = await Api.startEngine(id);
+    const time = Math.round(distance / velocity);
 
     const stop = document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement;
     stop.disabled = false;
 
     const car = document.getElementById(`car-${id}`) as HTMLElement;
     car.style.transform = `translateX(0)`;
-    //add animation
-    Animation.animationCar(car, distance, time);
-    console.log(time)
 
+    const road = document.querySelector('.road__wrapper') as HTMLElement;
+    const distanceOfAnimation = road.clientWidth - car.getBoundingClientRect().right;
+    const requestId = Animation.animationCar(car, distanceOfAnimation, time);
+
+    const { success }: { success: boolean } = await Api.driveCar(id);
+    if (!success) {
+      window.cancelAnimationFrame(requestId.id);
+    }
+    return { success, id, time };
   }
 
   public async stopEngine(event: Event) {
@@ -40,7 +47,16 @@ export default class CarActions {
     const stop = document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement;
     stop.disabled = true;
 
+    await Api.stopEngine(id);
+
     const start = document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement;
     start.disabled = false;
+
+    const car = document.getElementById(`car-${id}`) as HTMLElement;
+    car.style.transform = `translateX(0)`;
+
+    // if (data.animation[id]) {
+    //   window.cancelAnimationFrame(data.animation[id].id);
+    // }
   }
 }

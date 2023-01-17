@@ -1,5 +1,5 @@
-import Page from '../templates/page';
 import data from '../../defaultData/data';
+import Page from '../templates/page';
 import CreateTrack from './track/createCartTrack';
 
 export default class GaragePage extends Page {
@@ -32,7 +32,7 @@ export default class GaragePage extends Page {
 
   public renderGarage() {
     return `
-    <h1>Garage (${data.carsCount})</h1>
+    <h1>Garage (${<string>data.carsCount})</h1>
     <h2>Page #${data.carsPage}</h2>
     <ul class="garage">
       ${data.cars

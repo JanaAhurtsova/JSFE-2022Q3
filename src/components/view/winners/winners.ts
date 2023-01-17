@@ -1,7 +1,7 @@
-import Page from '../templates/page';
-import data from '../../defaultData/data';
 import { SortWinners } from '../../../types/enum';
+import data from '../../defaultData/data';
 import CreateTrack from '../garage/track/createCartTrack';
+import Page from '../templates/page';
 
 export default class Winners extends Page {
   constructor(id = 'winners') {
@@ -10,7 +10,7 @@ export default class Winners extends Page {
 
   public renderWinnersTable() {
     return `
-    <h1>Winners (${data.winnersCount})</h1>
+    <h1>Winners (${<string>data.winnersCount})</h1>
     <h2>Page #${data.winnersPage}</h2>
     <table class="table" cellspacing="0" cellpadding="0">
       <thead>
@@ -18,9 +18,7 @@ export default class Winners extends Page {
         <th>Car</th>
         <th>Name</th>
         <th class="table__button sort-wins ${data.sort === SortWinners.WINS ? data.order : ''}">Wins</th>
-        <th class="table__button sort-time ${
-          data.sort === SortWinners.TIMES ? data.order : ''
-        }">Best Time(sec)</th>
+        <th class="table__button sort-time ${data.sort === SortWinners.TIMES ? data.order : ''}">Best Time(sec)</th>
       </thead>
       <tbody>
         ${data.winners

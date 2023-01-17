@@ -1,8 +1,8 @@
-import data from "../defaultData/data";
-import Api from "../api/api";
-import { Order, Sort } from "../../types/enum";
-import UpdateStates from "./updateStates";
-import UpdateWrappers from "./updatePages";
+import { Order, Sort } from '../../types/enum';
+// import Api from '../api/api';
+import data from '../defaultData/data';
+import UpdateWrappers from './updatePages';
+import UpdateStates from './updateStates';
 
 export default class ControllerWinners {
   private updateWrappers: UpdateWrappers;

@@ -13,5 +13,5 @@ export default {
   sort: '',
   order: '',
   defaultPageId: 'garage',
+  animation: {},
 };
-

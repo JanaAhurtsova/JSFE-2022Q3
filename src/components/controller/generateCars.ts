@@ -24,7 +24,7 @@ export default class GenerateCars {
   private static getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 6; i += 1) {
       color += letters[Math.floor(Math.random() * letters.length)];
     }
 
@@ -32,8 +32,6 @@ export default class GenerateCars {
   }
 
   public static generateRandomCars(items = 100) {
-    return new Array(items)
-      .fill(0)
-      .map((_: { name: string; color: string }) => ({ name: this.getRandomCarName(), color: this.getRandomColor() }));
+    return new Array(items).fill(0).map(() => ({ name: this.getRandomCarName(), color: this.getRandomColor() }));
   }
 }

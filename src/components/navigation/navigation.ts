@@ -1,10 +1,10 @@
-import Page from '../view/templates/page';
 import { PageIds } from '../../types/enum';
-import GaragePage from '../view/garage/garage';
-import Winners from '../view/winners/winners';
-import data from '../defaultData/data';
-import UpdateStates from '../controller/updateStates';
 import UpdateWrappers from '../controller/updatePages';
+import UpdateStates from '../controller/updateStates';
+import data from '../defaultData/data';
+import GaragePage from '../view/garage/garage';
+import Page from '../view/templates/page';
+import Winners from '../view/winners/winners';
 
 export default class Navigation {
   private updateWrappers: UpdateWrappers;
@@ -13,7 +13,7 @@ export default class Navigation {
     this.updateWrappers = new UpdateWrappers();
   }
 
-  public static renderNewPage(idPage: string) {
+  public static async renderNewPage(idPage: string) {
     const currentPage = document.querySelector(`#${data.defaultPageId}`);
     if (currentPage) {
       currentPage.remove();
@@ -24,11 +24,11 @@ export default class Navigation {
     if (idPage === PageIds.GARAGE) {
       data.defaultPageId = idPage;
       page = new GaragePage(data.defaultPageId);
-      UpdateStates.updateStateGarage();
+      // await UpdateStates.updateStateGarage();
     } else if (idPage === PageIds.WINNERS) {
       data.defaultPageId = idPage;
-      page = new Winners(data.defaultPageId = idPage);
-      UpdateStates.updateStateWinners();
+      page = new Winners((data.defaultPageId = idPage));
+      // await UpdateStates.updateStateWinners();
     }
 
     if (page) {
@@ -38,12 +38,14 @@ export default class Navigation {
     }
   }
 
-  public enableRoutChange() {
+  public async enableRoutChange() {
     const hash = window.location.hash.slice(1);
     if (hash) {
-      Navigation.renderNewPage(hash);
+      await Navigation.renderNewPage(hash);
     } else {
-      Navigation.renderNewPage(data.defaultPageId);
+      await Navigation.renderNewPage(data.defaultPageId);
+      // await UpdateStates.updateStateGarage();
+      // await UpdateStates.updateStateWinners();
     }
   }
 
@@ -51,11 +53,11 @@ export default class Navigation {
     const target = event.target as HTMLButtonElement;
     if (target.closest('.next')) {
       if (data.defaultPageId === 'garage') {
-        data.carsPage = data.carsPage + 1;
+        data.carsPage += 1;
         await UpdateStates.updateStateGarage();
         this.updateWrappers.updateGarage();
       } else if (data.defaultPageId === 'winners') {
-        data.winnersPage = data.winnersPage + 1;
+        data.winnersPage += 1;
         await UpdateStates.updateStateWinners();
         this.updateWrappers.updateWinners();
       }
@@ -66,11 +68,11 @@ export default class Navigation {
     const target = event.target as HTMLButtonElement;
     if (target.closest('.prev')) {
       if (data.defaultPageId === 'garage') {
-        data.carsPage = data.carsPage - 1;
+        data.carsPage -= 1;
         await UpdateStates.updateStateGarage();
         this.updateWrappers.updateGarage();
       } else if (data.defaultPageId === 'winners') {
-        data.winnersPage = data.winnersPage - 1;
+        data.winnersPage -= 1;
         await UpdateStates.updateStateWinners();
         this.updateWrappers.updateWinners();
       }

@@ -1,4 +1,4 @@
-import { TResponseGetCars, TCar, TGetCar, TWinner, TWinners, TMoveCar } from '../../types/types';
+import { TResponseGetCars, TCar, TGetCar, TWinner, TItem, TWinners, TMoveCar, TDrive } from '../../types/types';
 
 const base = `http://localhost:3000`;
 
@@ -10,17 +10,17 @@ export default class Api {
   public static async getCars(page: number, limit = 7): Promise<TResponseGetCars> {
     const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
     return {
-      items: await response.json(),
+      items: (await response.json()) as TGetCar[],
       count: response.headers.get(`X-Total-Count`),
     };
   }
 
-  public static async getCar(id: number): Promise<TGetCar> {
+  public static async getCar(id: number) {
     const response = await fetch(`${garage}/${id}`);
-    return await response.json();
+    return response.json() as Promise<TGetCar>;
   }
 
-  public static async createCar(data: TCar): Promise<TGetCar> {
+  public static async createCar(data: TCar) {
     const response = await fetch(`${garage}`, {
       method: 'POST',
       headers: {
@@ -28,17 +28,17 @@ export default class Api {
       },
       body: JSON.stringify(data),
     });
-    return await response.json();
+    return response.json() as Promise<TGetCar>;
   }
 
-  public static async deleteCar(id: number): Promise<object> {
+  public static async deleteCar(id: number) {
     const response = await fetch(`${garage}/${id}`, {
       method: 'DELETE',
     });
-    return await response.json();
+    return response.json() as Promise<object>;
   }
 
-  public static async updateCar(id: number, data: TCar): Promise<TGetCar> {
+  public static async updateCar(id: number, data: TCar) {
     const response = await fetch(`${garage}/${id}`, {
       method: 'PUT',
       headers: {
@@ -46,27 +46,28 @@ export default class Api {
       },
       body: JSON.stringify(data),
     });
-    return await response.json();
+    return response.json() as Promise<TGetCar>;
   }
 
-  public static async stopEngine(id: number): Promise<TMoveCar> {
+  public static async stopEngine(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
     });
-    return await response.json();
+    return response.json() as Promise<TMoveCar>;
   }
 
-  public static async startEngine(id: number): Promise<TMoveCar> {
+  public static async startEngine(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=started`, {
       method: 'PATCH',
     });
-    return await response.json();
+    return response.json() as Promise<TMoveCar>;
   }
 
-  public static async driveCar(id: number) {
+  public static async driveCar(id: number): Promise<TDrive> {
     const response = await fetch(`${engine}?id=${id}&status=drive`, {
       method: 'PATCH',
     }).catch();
+
     return response.status === 200 ? response.json() : { success: false };
   }
 
@@ -82,7 +83,7 @@ export default class Api {
     }
 
     const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${sortOrder}`);
-    const items = await response.json();
+    const items = (await response.json()) as TItem[];
 
     return {
       items: await Promise.all(
@@ -92,12 +93,12 @@ export default class Api {
     };
   }
 
-  public static async getWinner(id: number): Promise<TWinner> {
+  public static async getWinner(id: number) {
     const response = await fetch(`${winners}/${id}`);
-    return await response.json();
+    return response.json() as Promise<TWinner>;
   }
 
-  public static async createWinner(data: TWinner): Promise<TWinner> {
+  public static async createWinner(data: TWinner) {
     const response = await fetch(`${winners}`, {
       method: 'POST',
       headers: {
@@ -105,17 +106,17 @@ export default class Api {
       },
       body: JSON.stringify(data),
     });
-    return await response.json();
+    return response.json() as Promise<TWinner>;
   }
 
-  public static async deleteWinner(id: number): Promise<object> {
+  public static async deleteWinner(id: number) {
     const response = await fetch(`${winners}/${id}`, {
       method: 'DELETE',
     });
-    return await response.json();
+    return response.json() as Promise<object>;
   }
 
-  public static async updateWinner(id: number, data: Omit<TWinner, 'id'>): Promise<TWinner> {
+  public static async updateWinner(id: number, data: Omit<TWinner, 'id'>) {
     const response = await fetch(`${winners}/${id}`, {
       method: 'PUT',
       headers: {
@@ -123,19 +124,19 @@ export default class Api {
       },
       body: JSON.stringify(data),
     });
-    return await response.json();
+    return response.json() as Promise<TWinner>;
   }
 
   public static async saveWinner(id: number, time: number) {
-    const status = (await fetch(`${winners}/${id}`)).status;
+    const { status } = await fetch(`${winners}/${id}`);
     if (status === 404) {
-      await Api.createWinner({id, wins: 1, time})
+      await Api.createWinner({ id, wins: 1, time });
     } else {
       const winner = await Api.getWinner(id);
       await Api.updateWinner(id, {
         wins: winner.wins + 1,
         time: time > winner.time ? winner.time : time,
-      })
+      });
     }
   }
 }

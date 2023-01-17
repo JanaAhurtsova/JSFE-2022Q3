@@ -3,40 +3,48 @@ export type TRoutes = {
 };
 
 export type TGetCar = {
-  name: string;
   color: string;
   id: number;
   isEngineStarted?: boolean;
+  name: string;
 };
 
 export type TResponseGetCars = {
-  items: TGetCar[];
   count: string | null;
+  items: TGetCar[];
 };
 
 export type TCar = Pick<TGetCar, 'name' | 'color'>;
 
 export type TMoveCar = {
-  velocity: number;
   distance: number;
+  velocity: number;
 };
 
 export type TWinner = {
   id: number;
-  wins: number;
   time: number;
+  wins: number;
 };
 
 export type TWinners = {
-  items: TItem[];
   count: string | null;
+  items: TItem[];
 };
 
-type TItem = {
-  id: number;
-  wins: number;
-  time: number;
+export type TItem = {
   car: TCar;
+  id: number;
+  time: number;
+  wins: number;
 };
 
 export type TSort = 'wins' | 'time';
+
+export type TState = {
+  id: number;
+};
+
+export type TDrive = {
+  success: boolean;
+};

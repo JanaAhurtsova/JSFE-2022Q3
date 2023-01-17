@@ -1,9 +1,9 @@
-import Header from './view/header/header';
-import Navigation from './navigation/navigation';
+import CarActions from './controller/action';
+import ControllerWinners from './controller/controllerWinners';
 import EditGarage from './controller/editGarage';
 import UpdateStates from './controller/updateStates';
-import ControllerWinners from './controller/controllerWinners';
-import CarActions from './controller/action';
+import Navigation from './navigation/navigation';
+import Header from './view/header/header';
 
 export default class App {
   private readonly header: Header;
@@ -26,18 +26,20 @@ export default class App {
 
   public async start() {
     document.body.append(this.header.header);
-    this.navigation.enableRoutChange();
+    await this.navigation.enableRoutChange();
     await UpdateStates.updateStateGarage();
     await UpdateStates.updateStateWinners();
     this.events();
   }
 
   private events() {
-    window.addEventListener('hashchange', this.navigation.enableRoutChange);
+    window.addEventListener('hashchange', async () => {
+      await this.navigation.enableRoutChange();
+    });
     document.querySelector('.pagination')?.addEventListener('click', async (event: Event) => {
       await this.navigation.clickToNextPage(event);
       await this.navigation.clickToPrevPage(event);
-    })
+    });
     this.listenGarage();
     this.listenWinners();
   }
@@ -59,13 +61,13 @@ export default class App {
     });
     document.querySelector('.controls')?.addEventListener('click', async (event: Event) => {
       await this.editGarage.generateRandomCars(event);
-    })
+    });
   }
 
   private listenWinners() {
     document.querySelector('.table')?.addEventListener('click', async (event: Event) => {
       await this.controllerWinners.sortByTime(event);
       await this.controllerWinners.sortByWins(event);
-    })
+    });
   }
 }

@@ -1,7 +1,7 @@
+import { TGetCar } from '../../types/types';
 import Api from '../api/api';
 import GaragePage from '../view/garage/garage';
 import GenerateCars from './generateCars';
-import { TGetCar } from '../../types/types';
 import UpdateStates from './updateStates';
 
 export default class EditGarage {
@@ -17,7 +17,7 @@ export default class EditGarage {
   public async createCar() {
     const name = (document.querySelector(`.create-name`) as HTMLInputElement).value;
     const color = (document.querySelector(`.create-color`) as HTMLInputElement).value;
-    await Api.createCar({name, color});
+    await Api.createCar({ name, color });
     await UpdateStates.updateStateGarage();
     this.updateGarage();
     (document.querySelector(`.create-name`) as HTMLInputElement).value = '';
@@ -62,7 +62,7 @@ export default class EditGarage {
   public async editCar() {
     const name = (document.querySelector(`.edit-name`) as HTMLInputElement).value;
     const color = (document.querySelector(`.edit-color`) as HTMLInputElement).value;
-    await Api.updateCar(this.selectedCar!.id, {name, color});
+    await Api.updateCar((<TGetCar>this.selectedCar).id, { name, color });
     await UpdateStates.updateStateGarage();
     this.updateGarage();
     (document.querySelector(`.edit-name`) as HTMLInputElement).value = '';
@@ -76,7 +76,7 @@ export default class EditGarage {
   public async generateRandomCars(event: Event) {
     if ((event.target as HTMLButtonElement).closest('.generate')) {
       const cars = GenerateCars.generateRandomCars(100);
-      await Promise.all(cars.map(async car => await Api.createCar(car)));
+      await Promise.all(cars.map(async (car) => Api.createCar(car)));
       await UpdateStates.updateStateGarage();
       this.updateGarage();
     }

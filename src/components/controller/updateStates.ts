@@ -1,5 +1,5 @@
-import data from "../defaultData/data";
-import Api from "../api/api";
+import Api from '../api/api';
+import data from '../defaultData/data';
 
 export default class UpdateStates {
   public static async updateStateGarage() {
@@ -9,17 +9,21 @@ export default class UpdateStates {
     data.carsCount = count;
     const prev = document.getElementById('prev__garage') as HTMLButtonElement;
     const next = document.getElementById('next__garage') as HTMLButtonElement;
-
-    if (data.carsPage > 1) {
-      prev.disabled = false;
-    } else {
-      prev.disabled = true;
+    console.log(prev);
+    if (prev) {
+      if (data.carsPage > 1) {
+        prev.disabled = false;
+      } else {
+        prev.disabled = true;
+      }
     }
 
-    if (data.carsPage * limitCarsOnPage < +data.carsCount!) {
-      next.disabled = false;
-    } else {
-      next.disabled = true;
+    if (next) {
+      if (data.carsPage * limitCarsOnPage < +(<string>data.carsCount)) {
+        next.disabled = false;
+      } else {
+        next.disabled = true;
+      }
     }
   }
 
@@ -30,7 +34,7 @@ export default class UpdateStates {
     data.winnersCount = count;
     const prev = document.getElementById('prev__winners') as HTMLButtonElement;
     const next = document.getElementById('next__winners') as HTMLButtonElement;
-
+    console.log(prev);
     if (prev) {
       if (data.winnersPage > 1) {
         prev.disabled = false;
@@ -40,7 +44,7 @@ export default class UpdateStates {
     }
 
     if (next) {
-      if (data.winnersPage * limitWinnersOnPage < +data.winnersCount!) {
+      if (data.winnersPage * limitWinnersOnPage < +(<string>data.winnersCount)) {
         next.disabled = false;
       } else {
         next.disabled = true;

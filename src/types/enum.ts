@@ -4,14 +4,14 @@ const enum PageIds {
 }
 
 const enum SortWinners {
-  WINS = 'wins',
   TIMES = 'times',
+  WINS = 'wins',
 }
 
 const enum Sort {
   ID = 'id',
-  WINS = 'wins',
   TIME = 'time',
+  WINS = 'wins',
 }
 
 const enum Order {

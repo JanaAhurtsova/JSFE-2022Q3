@@ -10,7 +10,7 @@ export default class UpdateWrappers {
     this.garage = new GaragePage('garage');
     this.winners = new Winners('winners');
   }
-  
+
   public updateGarage() {
     const garageWrapper = document.querySelector(`.garage__wrapper`) as HTMLElement;
     if (garageWrapper) {

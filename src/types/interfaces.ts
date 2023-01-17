@@ -5,7 +5,7 @@ export interface ICreateTrack {
 }
 
 export interface IDefault {
-  carsPage: number;
   cars: number;
   carsCount: number;
+  carsPage: number;
 }
