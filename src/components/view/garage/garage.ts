@@ -24,8 +24,8 @@ export default class GaragePage extends Page {
         </form>
       </div>
       <div class="controls">
-        <button class="button" id="race">Race</button>
-        <button class="button" id="reset">Reset</button>
+        <button class="button race">Race</button>
+        <button class="button reset" disabled>Reset</button>
         <button class="button generate">Generate cars</button>
       </div>`;
   }

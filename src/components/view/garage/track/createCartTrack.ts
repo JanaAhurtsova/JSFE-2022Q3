@@ -31,7 +31,7 @@ export default class CreateTrack implements ICreateTrack {
     </svg>`;
   }
 
-  public getCarTrack({ name, color, id, isEngineStarted }: TGetCar): string {
+  public getCarTrack({ name, color, id }: TGetCar): string {
     return `
     <div class="buttons-track">
       <button class="button select__button" id="select-car-${id}">Select</button>
@@ -41,12 +41,8 @@ export default class CreateTrack implements ICreateTrack {
     <div class="road">
       <div class="road__wrapper">
         <div class="controls-track">
-          <button class="button start-engine__button" id="start-engine-car-${id}" ${
-      isEngineStarted ? 'disabled' : ''
-    }> A </button>
-          <button class="button stop-engine__button" id="stop-engine-car-${id}" ${
-      isEngineStarted ? '' : 'disabled'
-    }> B </button>
+          <button class="button start-engine__button" id="start-engine-car-${id}"> A </button>
+          <button class="button stop-engine__button" id="stop-engine-car-${id}" disabled> B </button>
         </div>
         <div class="car" id="car-${id}">
           ${CreateTrack.getCarImage(color)}

@@ -4,6 +4,7 @@ import EditGarage from './controller/editGarage';
 import UpdateStates from './controller/updateStates';
 import Navigation from './navigation/navigation';
 import Header from './view/header/header';
+import Message from './view/message/message';
 
 export default class App {
   private readonly header: Header;
@@ -16,12 +17,15 @@ export default class App {
 
   private carAction: CarActions;
 
+  private message: Message;
+
   constructor() {
     this.header = new Header();
     this.navigation = new Navigation();
     this.editGarage = new EditGarage();
     this.controllerWinners = new ControllerWinners();
     this.carAction = new CarActions();
+    this.message = new Message();
   }
 
   public async start() {
@@ -29,19 +33,28 @@ export default class App {
     await this.navigation.enableRoutChange();
     await UpdateStates.updateStateGarage();
     await UpdateStates.updateStateWinners();
-    this.events();
+    this.changeView();
+    this.listenGarage();
+    this.listenWinners();
+    this.changePage();
   }
 
-  private events() {
+  private changeView() {
     window.addEventListener('hashchange', async () => {
       await this.navigation.enableRoutChange();
+      this.listenGarage();
+      this.listenWinners();
+      this.changePage();
+      await UpdateStates.updateStateGarage();
+      await UpdateStates.updateStateWinners();
     });
-    document.querySelector('.pagination')?.addEventListener('click', async (event: Event) => {
+  }
+
+  private changePage() {
+    (<HTMLElement>document.querySelector('.pagination')).addEventListener('click', async (event: Event) => {
       await this.navigation.clickToNextPage(event);
       await this.navigation.clickToPrevPage(event);
     });
-    this.listenGarage();
-    this.listenWinners();
   }
 
   private listenGarage() {
@@ -61,6 +74,11 @@ export default class App {
     });
     document.querySelector('.controls')?.addEventListener('click', async (event: Event) => {
       await this.editGarage.generateRandomCars(event);
+      await this.carAction.resetDriving(event);
+      await this.carAction.startRace(event);
+    });
+    this.message.overlay.addEventListener('click', (event: Event) => {
+      this.message.closeMessage(event);
     });
   }
 

@@ -24,11 +24,11 @@ export default class Navigation {
     if (idPage === PageIds.GARAGE) {
       data.defaultPageId = idPage;
       page = new GaragePage(data.defaultPageId);
-      // await UpdateStates.updateStateGarage();
+      await UpdateStates.updateStateGarage();
     } else if (idPage === PageIds.WINNERS) {
       data.defaultPageId = idPage;
       page = new Winners((data.defaultPageId = idPage));
-      // await UpdateStates.updateStateWinners();
+      await UpdateStates.updateStateWinners();
     }
 
     if (page) {
@@ -44,8 +44,6 @@ export default class Navigation {
       await Navigation.renderNewPage(hash);
     } else {
       await Navigation.renderNewPage(data.defaultPageId);
-      // await UpdateStates.updateStateGarage();
-      // await UpdateStates.updateStateWinners();
     }
   }
 

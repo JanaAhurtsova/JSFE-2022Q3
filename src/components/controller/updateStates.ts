@@ -9,7 +9,7 @@ export default class UpdateStates {
     data.carsCount = count;
     const prev = document.getElementById('prev__garage') as HTMLButtonElement;
     const next = document.getElementById('next__garage') as HTMLButtonElement;
-    console.log(prev);
+
     if (prev) {
       if (data.carsPage > 1) {
         prev.disabled = false;
@@ -34,7 +34,7 @@ export default class UpdateStates {
     data.winnersCount = count;
     const prev = document.getElementById('prev__winners') as HTMLButtonElement;
     const next = document.getElementById('next__winners') as HTMLButtonElement;
-    console.log(prev);
+
     if (prev) {
       if (data.winnersPage > 1) {
         prev.disabled = false;

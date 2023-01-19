@@ -48,14 +48,7 @@ export default class EditGarage {
     if (target.closest('.select__button')) {
       const id = target.id.replace(/select-car-/, '');
       this.selectedCar = await Api.getCar(+id);
-      const name = document.querySelector('.edit-name') as HTMLInputElement;
-      const color = document.querySelector('.edit-color') as HTMLInputElement;
-      const submit = document.querySelector('.edit-submit') as HTMLInputElement;
-      name.value = this.selectedCar.name;
-      color.value = this.selectedCar.color;
-      name.disabled = false;
-      color.disabled = false;
-      submit.disabled = false;
+      this.editElement(this.selectedCar.name, this.selectedCar.color, false);
     }
   }
 
@@ -65,11 +58,7 @@ export default class EditGarage {
     await Api.updateCar((<TGetCar>this.selectedCar).id, { name, color });
     await UpdateStates.updateStateGarage();
     this.updateGarage();
-    (document.querySelector(`.edit-name`) as HTMLInputElement).value = '';
-    (document.querySelector(`.edit-color`) as HTMLInputElement).value = '#000000';
-    (document.querySelector('.edit-name') as HTMLInputElement).disabled = true;
-    (document.querySelector('.edit-color') as HTMLInputElement).disabled = true;
-    (document.querySelector('.edit-submit') as HTMLInputElement).disabled = true;
+    this.editElement('', '#000000', true);
     this.selectedCar = null;
   }
 
@@ -80,5 +69,13 @@ export default class EditGarage {
       await UpdateStates.updateStateGarage();
       this.updateGarage();
     }
+  }
+
+  private editElement(name: string, color: string, disabled: boolean) {
+    (document.querySelector(`.edit-name`) as HTMLInputElement).value = name;
+    (document.querySelector(`.edit-color`) as HTMLInputElement).value = color;
+    (document.querySelector('.edit-name') as HTMLInputElement).disabled = disabled;
+    (document.querySelector('.edit-color') as HTMLInputElement).disabled = disabled;
+    (document.querySelector('.edit-submit') as HTMLInputElement).disabled = disabled;
   }
 }

@@ -1,3 +1,4 @@
+import { TAnimation, TOrder } from '../../types/types';
 import Api from '../api/api';
 
 const { items: cars, count: carsCount } = await Api.getCars(1);
@@ -11,7 +12,7 @@ export default {
   winners,
   winnersCount,
   sort: '',
-  order: '',
+  order: '' as TOrder,
   defaultPageId: 'garage',
-  animation: {},
+  animation: {} as TAnimation,
 };

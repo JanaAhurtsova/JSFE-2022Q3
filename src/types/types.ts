@@ -1,13 +1,11 @@
-export type TRoutes = {
-  [route: string]: string;
-};
-
-export type TGetCar = {
+export type TGetWinCar = {
   color: string;
   id: number;
-  isEngineStarted?: boolean;
   name: string;
+  time: number;
 };
+
+export type TGetCar = Omit<TGetWinCar, 'time'>;
 
 export type TResponseGetCars = {
   count: string | null;
@@ -40,11 +38,22 @@ export type TItem = {
 };
 
 export type TSort = 'wins' | 'time';
+export type TOrder = 'ASC' | 'DESC';
 
 export type TState = {
   id: number;
 };
 
+export type TAnimation = {
+  [key: number]: TState;
+};
+
 export type TDrive = {
   success: boolean;
+};
+
+export type TRace = {
+  id: number;
+  success: boolean;
+  time: number;
 };

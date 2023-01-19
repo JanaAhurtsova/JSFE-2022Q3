@@ -1,5 +1,5 @@
 import { Order, Sort } from '../../types/enum';
-// import Api from '../api/api';
+import { TSort } from '../../types/types';
 import data from '../defaultData/data';
 import UpdateWrappers from './updatePages';
 import UpdateStates from './updateStates';
@@ -11,9 +11,10 @@ export default class ControllerWinners {
     this.updateWrappers = new UpdateWrappers();
   }
 
-  private async setSortOrder(sort: string) {
-    data.sort = data.order === Order.ASC ? Order.DESC : Order.ASC;
+  private async setSortOrder(sort: TSort) {
     data.sort = sort;
+    data.order = data.order === Order.ASC ? Order.DESC : Order.ASC;
+    console.log(data.sort);
     await UpdateStates.updateStateWinners();
     this.updateWrappers.updateWinners();
   }

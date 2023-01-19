@@ -20,13 +20,13 @@ export default class Api {
     return response.json() as Promise<TGetCar>;
   }
 
-  public static async createCar(data: TCar) {
+  public static async createCar(body: TCar) {
     const response = await fetch(`${garage}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     });
     return response.json() as Promise<TGetCar>;
   }
@@ -38,13 +38,13 @@ export default class Api {
     return response.json() as Promise<object>;
   }
 
-  public static async updateCar(id: number, data: TCar) {
+  public static async updateCar(id: number, body: TCar) {
     const response = await fetch(`${garage}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     });
     return response.json() as Promise<TGetCar>;
   }
@@ -63,12 +63,12 @@ export default class Api {
     return response.json() as Promise<TMoveCar>;
   }
 
-  public static async driveCar(id: number): Promise<TDrive> {
+  public static async driveCar(id: number): Promise<Response> {
     const response = await fetch(`${engine}?id=${id}&status=drive`, {
       method: 'PATCH',
     }).catch();
 
-    return response.status === 200 ? response.json() : { success: false };
+    return response;
   }
 
   public static async getWinners(
@@ -98,13 +98,13 @@ export default class Api {
     return response.json() as Promise<TWinner>;
   }
 
-  public static async createWinner(data: TWinner) {
+  public static async createWinner(body: TWinner) {
     const response = await fetch(`${winners}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     });
     return response.json() as Promise<TWinner>;
   }
@@ -116,13 +116,13 @@ export default class Api {
     return response.json() as Promise<object>;
   }
 
-  public static async updateWinner(id: number, data: Omit<TWinner, 'id'>) {
+  public static async updateWinner(id: number, body: Omit<TWinner, 'id'>) {
     const response = await fetch(`${winners}/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(body),
     });
     return response.json() as Promise<TWinner>;
   }
