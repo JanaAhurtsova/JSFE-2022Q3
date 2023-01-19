@@ -25,3 +25,11 @@
   }
 
 }
+
+.ASC::after {
+  content: '↑';
+}
+
+.DESC::after {
+  content: '↓';
+}

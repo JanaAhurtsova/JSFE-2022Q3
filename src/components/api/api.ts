@@ -1,4 +1,4 @@
-import { TResponseGetCars, TCar, TGetCar, TWinner, TItem, TWinners, TMoveCar } from '../../types/types';
+import { TResponseGetCars, TCar, TGetCar, TWinner, TWinners, TMoveCar } from '../../types/types';
 
 const base = `http://localhost:3000`;
 
@@ -64,11 +64,9 @@ export default class Api {
   }
 
   public static async DriveCar(id: number): Promise<Response> {
-    const response = await fetch(`${engine}?id=${id}&status=drive`, {
+    return await fetch(`${engine}?id=${id}&status=drive`, {
       method: 'PATCH',
-    }).catch();
-
-    return response;
+    });
   }
 
   public static async GetWinners(
@@ -83,11 +81,11 @@ export default class Api {
     }
 
     const response = await fetch(`${winners}?_page=${page}&_limit=${limit}${sortOrder}`);
-    const items = (await response.json()) as TItem[];
+    const items = (await response.json()) as TWinner[];
 
     return {
       items: await Promise.all(
-        items.map(async (winner: TWinner) => ({ ...winner, car: await Api.GetCar(winner.id) }))
+        items.map(async (winner) => ({ ...winner, car: await Api.GetCar(winner.id) }))
       ),
       count: response.headers.get(`X-Total-Count`),
     };
