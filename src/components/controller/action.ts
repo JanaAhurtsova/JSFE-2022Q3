@@ -38,7 +38,7 @@ export default class CarActions {
     const distanceOfAnimation = road.clientWidth - car.getBoundingClientRect().right;
     data.animation[id] = Animation.AnimationCar(car, distanceOfAnimation, time);
 
-    await Api.DriveCar(id)
+    const { success } = await Api.DriveCar(id)
       .then((response) => {
         if (response.status !== 200) {
           window.cancelAnimationFrame(data.animation[id].id);
@@ -51,7 +51,7 @@ export default class CarActions {
         }
       });
 
-    return { id, time };
+    return { success, id, time };
   }
 
   public async stopEngine(event: Event) {
@@ -97,10 +97,12 @@ export default class CarActions {
 
       const successRace = data.cars.map(async ({ id }) => this.startDriving(id));
       const winnerCar = await Promise.any(successRace);
+
       const winner = {
         ...data.cars.find((car) => car.id === winnerCar.id),
         time: winnerCar.time / 1000,
       } as Required<TGetWinCar>;
+      console.log(winner)
 
       await Api.SaveWinner(winner.id, winner.time);
 
