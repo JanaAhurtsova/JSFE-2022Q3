@@ -1,4 +1,4 @@
-import { TResponseGetCars, TCar, TGetCar, TWinner, TItem, TWinners, TMoveCar, TDrive } from '../../types/types';
+import { TResponseGetCars, TCar, TGetCar, TWinner, TItem, TWinners, TMoveCar } from '../../types/types';
 
 const base = `http://localhost:3000`;
 

@@ -1,4 +1,4 @@
-import { TGetWinCar, TDrive } from '../../types/types';
+import { TGetWinCar } from '../../types/types';
 import Api from '../api/api';
 import data from '../defaultData/data';
 import Message from '../view/message/message';
@@ -38,12 +38,18 @@ export default class CarActions {
     const distanceOfAnimation = road.clientWidth - car.getBoundingClientRect().right;
     data.animation[id] = Animation.animationCar(car, distanceOfAnimation, time);
 
-    await Api.driveCar(id).then(response => {
-      if (response.status !== 200) {
-        window.cancelAnimationFrame(data.animation[id].id);
-      }
-      return response.json();
-    })
+    await Api.driveCar(id)
+      .then((response) => {
+        if (response.status !== 200) {
+          window.cancelAnimationFrame(data.animation[id].id);
+        }
+        return response.json();
+      })
+      .catch((error) => {
+        if (error) {
+          console.log('Your car broke down');
+        }
+      });
 
     return { id, time };
   }
