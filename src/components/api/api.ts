@@ -7,7 +7,7 @@ const engine = `${base}/engine`;
 const winners = `${base}/winners`;
 
 export default class Api {
-  public static async getCars(page: number, limit = 7): Promise<TResponseGetCars> {
+  public static async GetCars(page: number, limit = 7): Promise<TResponseGetCars> {
     const response = await fetch(`${garage}?_page=${page}&_limit=${limit}`);
     return {
       items: (await response.json()) as TGetCar[],
@@ -15,12 +15,12 @@ export default class Api {
     };
   }
 
-  public static async getCar(id: number) {
+  public static async GetCar(id: number) {
     const response = await fetch(`${garage}/${id}`);
     return response.json() as Promise<TGetCar>;
   }
 
-  public static async createCar(body: TCar) {
+  public static async CreateCar(body: TCar) {
     const response = await fetch(`${garage}`, {
       method: 'POST',
       headers: {
@@ -31,14 +31,14 @@ export default class Api {
     return response.json() as Promise<TGetCar>;
   }
 
-  public static async deleteCar(id: number) {
+  public static async DeleteCar(id: number) {
     const response = await fetch(`${garage}/${id}`, {
       method: 'DELETE',
     });
     return response.json() as Promise<object>;
   }
 
-  public static async updateCar(id: number, body: TCar) {
+  public static async UpdateCar(id: number, body: TCar) {
     const response = await fetch(`${garage}/${id}`, {
       method: 'PUT',
       headers: {
@@ -49,21 +49,21 @@ export default class Api {
     return response.json() as Promise<TGetCar>;
   }
 
-  public static async stopEngine(id: number) {
+  public static async StopEngine(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=stopped`, {
       method: 'PATCH',
     });
     return response.json() as Promise<TMoveCar>;
   }
 
-  public static async startEngine(id: number) {
+  public static async StartEngine(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=started`, {
       method: 'PATCH',
     });
     return response.json() as Promise<TMoveCar>;
   }
 
-  public static async driveCar(id: number): Promise<Response> {
+  public static async DriveCar(id: number): Promise<Response> {
     const response = await fetch(`${engine}?id=${id}&status=drive`, {
       method: 'PATCH',
     }).catch();
@@ -71,7 +71,7 @@ export default class Api {
     return response;
   }
 
-  public static async getWinners(
+  public static async GetWinners(
     page: number,
     limit = 10,
     sort?: string | null,
@@ -87,18 +87,18 @@ export default class Api {
 
     return {
       items: await Promise.all(
-        items.map(async (winner: TWinner) => ({ ...winner, car: await this.getCar(winner.id) }))
+        items.map(async (winner: TWinner) => ({ ...winner, car: await Api.GetCar(winner.id) }))
       ),
       count: response.headers.get(`X-Total-Count`),
     };
   }
 
-  public static async getWinner(id: number) {
+  public static async GetWinner(id: number) {
     const response = await fetch(`${winners}/${id}`);
     return response.json() as Promise<TWinner>;
   }
 
-  public static async createWinner(body: TWinner) {
+  public static async CreateWinner(body: TWinner) {
     const response = await fetch(`${winners}`, {
       method: 'POST',
       headers: {
@@ -109,14 +109,14 @@ export default class Api {
     return response.json() as Promise<TWinner>;
   }
 
-  public static async deleteWinner(id: number) {
+  public static async DeleteWinner(id: number) {
     const response = await fetch(`${winners}/${id}`, {
       method: 'DELETE',
     });
     return response.json() as Promise<object>;
   }
 
-  public static async updateWinner(id: number, body: Omit<TWinner, 'id'>) {
+  public static async UpdateWinner(id: number, body: Omit<TWinner, 'id'>) {
     const response = await fetch(`${winners}/${id}`, {
       method: 'PUT',
       headers: {
@@ -127,13 +127,13 @@ export default class Api {
     return response.json() as Promise<TWinner>;
   }
 
-  public static async saveWinner(id: number, time: number) {
+  public static async SaveWinner(id: number, time: number) {
     const { status } = await fetch(`${winners}/${id}`);
     if (status === 404) {
-      await Api.createWinner({ id, wins: 1, time });
+      await Api.CreateWinner({ id, wins: 1, time });
     } else {
-      const winner = await Api.getWinner(id);
-      await Api.updateWinner(id, {
+      const winner = await Api.GetWinner(id);
+      await Api.UpdateWinner(id, {
         wins: winner.wins + 1,
         time: time > winner.time ? winner.time : time,
       });

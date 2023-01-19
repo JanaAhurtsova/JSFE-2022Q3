@@ -17,8 +17,8 @@ export default class EditGarage {
   public async createCar() {
     const name = (document.querySelector(`.create-name`) as HTMLInputElement).value;
     const color = (document.querySelector(`.create-color`) as HTMLInputElement).value;
-    await Api.createCar({ name, color });
-    await UpdateStates.updateStateGarage();
+    await Api.CreateCar({ name, color });
+    await UpdateStates.UpdateStateGarage();
     this.updateGarage();
     (document.querySelector(`.create-name`) as HTMLInputElement).value = '';
     (document.querySelector(`.create-color`) as HTMLInputElement).value = '#000000';
@@ -36,9 +36,9 @@ export default class EditGarage {
     const target = event.target as HTMLElement;
     if (target.closest('.remove__button')) {
       const id = Number(target.id.replace(/remove-car-/, ''));
-      await Api.deleteCar(id);
-      await Api.deleteWinner(id);
-      await UpdateStates.updateStateGarage();
+      await Api.DeleteCar(id);
+      await Api.DeleteWinner(id);
+      await UpdateStates.UpdateStateGarage();
       this.updateGarage();
     }
   }
@@ -47,7 +47,7 @@ export default class EditGarage {
     const target = event.target as HTMLElement;
     if (target.closest('.select__button')) {
       const id = target.id.replace(/select-car-/, '');
-      this.selectedCar = await Api.getCar(+id);
+      this.selectedCar = await Api.GetCar(+id);
       this.editElement(this.selectedCar.name, this.selectedCar.color, false);
     }
   }
@@ -55,8 +55,8 @@ export default class EditGarage {
   public async editCar() {
     const name = (document.querySelector(`.edit-name`) as HTMLInputElement).value;
     const color = (document.querySelector(`.edit-color`) as HTMLInputElement).value;
-    await Api.updateCar((<TGetCar>this.selectedCar).id, { name, color });
-    await UpdateStates.updateStateGarage();
+    await Api.UpdateCar((<TGetCar>this.selectedCar).id, { name, color });
+    await UpdateStates.UpdateStateGarage();
     this.updateGarage();
     this.editElement('', '#000000', true);
     this.selectedCar = null;
@@ -65,8 +65,8 @@ export default class EditGarage {
   public async generateRandomCars(event: Event) {
     if ((event.target as HTMLButtonElement).closest('.generate')) {
       const cars = GenerateCars.generateRandomCars(100);
-      await Promise.all(cars.map(async (car) => Api.createCar(car)));
-      await UpdateStates.updateStateGarage();
+      await Promise.all(cars.map(async (car) => Api.CreateCar(car)));
+      await UpdateStates.UpdateStateGarage();
       this.updateGarage();
     }
   }

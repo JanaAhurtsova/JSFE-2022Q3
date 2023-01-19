@@ -13,7 +13,7 @@ export default class Navigation {
     this.updateWrappers = new UpdateWrappers();
   }
 
-  public static async renderNewPage(idPage: string) {
+  public static async RenderNewPage(idPage: string) {
     const currentPage = document.querySelector(`#${data.defaultPageId}`);
     if (currentPage) {
       currentPage.remove();
@@ -24,11 +24,11 @@ export default class Navigation {
     if (idPage === PageIds.GARAGE) {
       data.defaultPageId = idPage;
       page = new GaragePage(data.defaultPageId);
-      await UpdateStates.updateStateGarage();
+      await UpdateStates.UpdateStateGarage();
     } else if (idPage === PageIds.WINNERS) {
       data.defaultPageId = idPage;
       page = new Winners((data.defaultPageId = idPage));
-      await UpdateStates.updateStateWinners();
+      await UpdateStates.UpdateStateWinners();
     }
 
     if (page) {
@@ -41,9 +41,9 @@ export default class Navigation {
   public async enableRoutChange() {
     const hash = window.location.hash.slice(1);
     if (hash) {
-      await Navigation.renderNewPage(hash);
+      await Navigation.RenderNewPage(hash);
     } else {
-      await Navigation.renderNewPage(data.defaultPageId);
+      await Navigation.RenderNewPage(data.defaultPageId);
     }
   }
 
@@ -52,11 +52,11 @@ export default class Navigation {
     if (target.closest('.next')) {
       if (data.defaultPageId === 'garage') {
         data.carsPage += 1;
-        await UpdateStates.updateStateGarage();
+        await UpdateStates.UpdateStateGarage();
         this.updateWrappers.updateGarage();
       } else if (data.defaultPageId === 'winners') {
         data.winnersPage += 1;
-        await UpdateStates.updateStateWinners();
+        await UpdateStates.UpdateStateWinners();
         this.updateWrappers.updateWinners();
       }
     }
@@ -67,11 +67,11 @@ export default class Navigation {
     if (target.closest('.prev')) {
       if (data.defaultPageId === 'garage') {
         data.carsPage -= 1;
-        await UpdateStates.updateStateGarage();
+        await UpdateStates.UpdateStateGarage();
         this.updateWrappers.updateGarage();
       } else if (data.defaultPageId === 'winners') {
         data.winnersPage -= 1;
-        await UpdateStates.updateStateWinners();
+        await UpdateStates.UpdateStateWinners();
         this.updateWrappers.updateWinners();
       }
     }

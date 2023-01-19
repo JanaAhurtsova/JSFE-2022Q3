@@ -15,7 +15,7 @@ export default class ControllerWinners {
     data.sort = sort;
     data.order = data.order === Order.ASC ? Order.DESC : Order.ASC;
     console.log(data.sort);
-    await UpdateStates.updateStateWinners();
+    await UpdateStates.UpdateStateWinners();
     this.updateWrappers.updateWinners();
   }
 

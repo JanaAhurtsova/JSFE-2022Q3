@@ -23,7 +23,7 @@ export default class CarActions {
     const start = document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement;
     start.disabled = true;
 
-    const { velocity, distance } = await Api.startEngine(id);
+    const { velocity, distance } = await Api.StartEngine(id);
     const time = Math.round(distance / velocity);
 
     const stop = document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement;
@@ -36,9 +36,9 @@ export default class CarActions {
 
     const road = document.querySelector('.road__wrapper') as HTMLElement;
     const distanceOfAnimation = road.clientWidth - car.getBoundingClientRect().right;
-    data.animation[id] = Animation.animationCar(car, distanceOfAnimation, time);
+    data.animation[id] = Animation.AnimationCar(car, distanceOfAnimation, time);
 
-    await Api.driveCar(id)
+    await Api.DriveCar(id)
       .then((response) => {
         if (response.status !== 200) {
           window.cancelAnimationFrame(data.animation[id].id);
@@ -65,7 +65,7 @@ export default class CarActions {
   private async stopDriving(id: number) {
     (document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement).disabled = true;
 
-    await Api.stopEngine(id);
+    await Api.StopEngine(id);
 
     (document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement).disabled = false;
     (document.querySelector('.reset') as HTMLButtonElement).disabled = true;
@@ -101,8 +101,8 @@ export default class CarActions {
         ...data.cars.find((car) => car.id === winnerCar.id),
         time: winnerCar.time / 1000,
       } as Required<TGetWinCar>;
-      console.log(winnerCar);
-      await Api.saveWinner(winner.id, winner.time);
+
+      await Api.SaveWinner(winner.id, winner.time);
 
       this.message.showMessage();
       const message = document.querySelector('.message') as HTMLHeadingElement;

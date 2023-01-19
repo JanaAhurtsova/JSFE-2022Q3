@@ -31,8 +31,8 @@ export default class App {
   public async start() {
     document.body.append(this.header.header);
     await this.navigation.enableRoutChange();
-    await UpdateStates.updateStateGarage();
-    await UpdateStates.updateStateWinners();
+    await UpdateStates.UpdateStateGarage();
+    await UpdateStates.UpdateStateWinners();
     this.changeView();
     this.listenGarage();
     this.listenWinners();
@@ -45,8 +45,8 @@ export default class App {
       this.listenGarage();
       this.listenWinners();
       this.changePage();
-      await UpdateStates.updateStateGarage();
-      await UpdateStates.updateStateWinners();
+      await UpdateStates.UpdateStateGarage();
+      await UpdateStates.UpdateStateWinners();
     });
   }
 

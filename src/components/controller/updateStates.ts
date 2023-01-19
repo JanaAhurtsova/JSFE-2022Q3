@@ -2,9 +2,9 @@ import Api from '../api/api';
 import data from '../defaultData/data';
 
 export default class UpdateStates {
-  public static async updateStateGarage() {
+  public static async UpdateStateGarage() {
     const limitCarsOnPage = 7;
-    const { items, count } = await Api.getCars(data.carsPage, limitCarsOnPage);
+    const { items, count } = await Api.GetCars(data.carsPage, limitCarsOnPage);
     data.cars = items;
     data.carsCount = count;
     const prev = document.getElementById('prev__garage') as HTMLButtonElement;
@@ -27,9 +27,9 @@ export default class UpdateStates {
     }
   }
 
-  public static async updateStateWinners() {
+  public static async UpdateStateWinners() {
     const limitWinnersOnPage = 10;
-    const { items, count } = await Api.getWinners(data.winnersPage, limitWinnersOnPage, data.sort, data.order);
+    const { items, count } = await Api.GetWinners(data.winnersPage, limitWinnersOnPage, data.sort, data.order);
     data.winners = items;
     data.winnersCount = count;
     const prev = document.getElementById('prev__winners') as HTMLButtonElement;

@@ -1,7 +1,7 @@
 import { TState } from '../../types/types';
 
 export default class Animation {
-  public static animationCar(car: HTMLElement, distance: number, animationTime: number) {
+  public static AnimationCar(car: HTMLElement, distance: number, animationTime: number) {
     let start: number;
     const state = {} as TState;
 
