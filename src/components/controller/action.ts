@@ -76,6 +76,7 @@ export default class CarActions {
   public async resetDriving(event: Event) {
     const target = event.target as HTMLButtonElement;
     if (target.closest('.reset')) {
+      this.flag = true;
       (<HTMLButtonElement>document.querySelector('.race')).disabled = false;
       target.disabled = true;
       this.setDisabled(false);
