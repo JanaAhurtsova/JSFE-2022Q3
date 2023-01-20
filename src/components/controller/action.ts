@@ -1,4 +1,4 @@
-import { TGetWinCar } from '../../types/types';
+import { TMoveCar, TDrive } from '../../types/types';
 import Api from '../api/api';
 import data from '../defaultData/data';
 import Message from '../view/message/message';
@@ -7,8 +7,11 @@ import Animation from './animation';
 export default class CarActions {
   private message: Message;
 
+  private flag: boolean;
+
   constructor() {
     this.message = new Message();
+    this.flag = true;
   }
 
   public async startEngine(event: Event) {
@@ -20,38 +23,30 @@ export default class CarActions {
   }
 
   private async startDriving(id: number) {
-    const start = document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement;
-    start.disabled = true;
-
+    (document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement).disabled = true;
+    (document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement).disabled = false;
+    (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
+    
     const { velocity, distance } = await Api.StartEngine(id);
     const time = Math.round(distance / velocity);
 
-    const stop = document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement;
-    stop.disabled = false;
+    this.setAnimation(id, time);
 
-    (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
+    await Api.DriveCar(id)
+      .then((response) => response.json() as Promise<TDrive>)
+      .catch(() => {
+        window.cancelAnimationFrame(data.animation[id].id);
+      });
 
+    return { id, time };
+  }
+
+  private setAnimation(id: number, time: number) {
     const car = document.getElementById(`car-${id}`) as HTMLElement;
-    car.style.transform = `translateX(0)`;
 
     const road = document.querySelector('.road__wrapper') as HTMLElement;
     const distanceOfAnimation = road.clientWidth - car.getBoundingClientRect().right;
     data.animation[id] = Animation.AnimationCar(car, distanceOfAnimation, time);
-
-    const { success } = await Api.DriveCar(id)
-      .then((response) => {
-        if (response.status !== 200) {
-          window.cancelAnimationFrame(data.animation[id].id);
-        }
-        return response.json();
-      })
-      .catch((error) => {
-        if (error) {
-          console.log('Your car broke down');
-        }
-      });
-
-    return { success, id, time };
   }
 
   public async stopEngine(event: Event) {
@@ -95,22 +90,30 @@ export default class CarActions {
       this.setDisabled(true);
       (<HTMLButtonElement>document.querySelector('.reset')).disabled = false;
 
-      const successRace = data.cars.map(async ({ id }) => this.startDriving(id));
-      const winnerCar = await Promise.any(successRace);
+      const startAllEngines = data.cars.map(async ({ id }) => await Api.StartEngine(id));
+      Promise.all(startAllEngines).then((motionParameters: TMoveCar[]) => {
+        motionParameters.forEach((parameter, ind) => {
+          const carInfo = data.cars[ind];
+          const time = Math.round(parameter.distance / parameter.velocity);
 
-      const winner = {
-        ...data.cars.find((car) => car.id === winnerCar.id),
-        time: winnerCar.time / 1000,
-      } as Required<TGetWinCar>;
-      console.log(winner)
+          this.setAnimation(carInfo.id, time);
 
-      await Api.SaveWinner(winner.id, winner.time);
+          Api.DriveCar(carInfo.id).then(response => response.json()).then(() => {
+            if (this.flag) {
+              this.flag = false;
+              Api.SaveWinner(carInfo.id, time/1000);
 
-      this.message.showMessage();
-      const message = document.querySelector('.message') as HTMLHeadingElement;
-      if (message) {
-        message.innerText = `${winner.name} went first (${winner.time}sec)!`;
-      }
+              this.message.showMessage();
+              const message = document.querySelector('.message') as HTMLHeadingElement;
+              if (message) {
+                message.innerText = `${carInfo.name} went first (${time/1000}sec)!`;
+              }
+            }})
+            .catch(() => {
+              window.cancelAnimationFrame(data.animation[carInfo.id].id);
+            });
+        })
+      });
     }
   }
 

@@ -13,6 +13,7 @@ export default class Message {
       <h2 class='message'></h2>
     </div>`;
     this.overlay.innerHTML = message;
+    this.overlay.addEventListener('click', this.closeMessage);
   }
 
   public showMessage() {

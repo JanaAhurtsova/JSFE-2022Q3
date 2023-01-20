@@ -4,7 +4,6 @@ import EditGarage from './controller/editGarage';
 import UpdateStates from './controller/updateStates';
 import Navigation from './navigation/navigation';
 import Header from './view/header/header';
-import Message from './view/message/message';
 
 export default class App {
   private readonly header: Header;
@@ -17,15 +16,12 @@ export default class App {
 
   private carAction: CarActions;
 
-  private message: Message;
-
   constructor() {
     this.header = new Header();
     this.navigation = new Navigation();
     this.editGarage = new EditGarage();
     this.controllerWinners = new ControllerWinners();
     this.carAction = new CarActions();
-    this.message = new Message();
   }
 
   public async start() {
@@ -76,9 +72,6 @@ export default class App {
       await this.editGarage.generateRandomCars(event);
       await this.carAction.resetDriving(event);
       await this.carAction.startRace(event);
-    });
-    this.message.overlay.addEventListener('click', (event: Event) => {
-      this.message.closeMessage(event);
     });
   }
 

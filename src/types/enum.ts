@@ -10,7 +10,7 @@ const enum SortWinners {
 
 const enum Sort {
   ID = 'id',
-  TIME = 'time',
+  TIMES = 'times',
   WINS = 'wins',
 }
 

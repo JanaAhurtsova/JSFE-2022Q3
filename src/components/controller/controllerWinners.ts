@@ -14,7 +14,7 @@ export default class ControllerWinners {
   private async setSortOrder(sort: TSort) {
     data.sort = sort;
     data.order = data.order === Order.ASC ? Order.DESC : Order.ASC;
-    console.log(data.sort);
+
     await UpdateStates.UpdateStateWinners();
     this.updateWrappers.updateWinners();
   }
@@ -29,7 +29,7 @@ export default class ControllerWinners {
   public async sortByTime(event: Event) {
     const target = event.target as HTMLElement;
     if (target.closest('.sort-time')) {
-      await this.setSortOrder(Sort.TIME);
+      await this.setSortOrder(Sort.TIMES);
     }
   }
 }

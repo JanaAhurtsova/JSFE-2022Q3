@@ -84,9 +84,7 @@ export default class Api {
     const items = (await response.json()) as TWinner[];
 
     return {
-      items: await Promise.all(
-        items.map(async (winner) => ({ ...winner, car: await Api.GetCar(winner.id) }))
-      ),
+      items: await Promise.all(items.map(async (winner) => ({ ...winner, car: await Api.GetCar(winner.id) }))),
       count: response.headers.get(`X-Total-Count`),
     };
   }
