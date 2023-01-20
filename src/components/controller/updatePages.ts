@@ -25,6 +25,5 @@ export default class UpdateWrappers {
       winnersWrapper.innerHTML = '';
       winnersWrapper.innerHTML = this.winners.renderWinnersTable();
     }
-
   }
 }

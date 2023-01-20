@@ -26,7 +26,7 @@ export default class CarActions {
     (document.getElementById(`start-engine-car-${id}`) as HTMLButtonElement).disabled = true;
     (document.getElementById(`stop-engine-car-${id}`) as HTMLButtonElement).disabled = false;
     (document.querySelector('.reset') as HTMLButtonElement).disabled = false;
-    
+
     const { velocity, distance } = await Api.StartEngine(id);
     const time = Math.round(distance / velocity);
 
@@ -91,29 +91,32 @@ export default class CarActions {
       this.setDisabled(true);
       (<HTMLButtonElement>document.querySelector('.reset')).disabled = false;
 
-      const startAllEngines = data.cars.map(async ({ id }) => await Api.StartEngine(id));
-      Promise.all(startAllEngines).then((motionParameters: TMoveCar[]) => {
+      const startAllEngines = data.cars.map(async ({ id }) => Api.StartEngine(id));
+      await Promise.all(startAllEngines).then((motionParameters: TMoveCar[]) => {
         motionParameters.forEach((parameter, ind) => {
           const carInfo = data.cars[ind];
           const time = Math.round(parameter.distance / parameter.velocity);
 
           this.setAnimation(carInfo.id, time);
 
-          Api.DriveCar(carInfo.id).then(response => response.json()).then(() => {
-            if (this.flag) {
-              this.flag = false;
-              Api.SaveWinner(carInfo.id, time/1000);
+          Api.DriveCar(carInfo.id)
+            .then((response) => response.json())
+            .then(async () => {
+              if (this.flag) {
+                this.flag = false;
+                await Api.SaveWinner(carInfo.id, time / 1000);
 
-              this.message.showMessage();
-              const message = document.querySelector('.message') as HTMLHeadingElement;
-              if (message) {
-                message.innerText = `${carInfo.name} went first (${time/1000}sec)!`;
+                this.message.showMessage();
+                const message = document.querySelector('.message') as HTMLHeadingElement;
+                if (message) {
+                  message.innerText = `${carInfo.name} went first (${time / 1000}sec)!`;
+                }
               }
-            }})
+            })
             .catch(() => {
               window.cancelAnimationFrame(data.animation[carInfo.id].id);
             });
-        })
+        });
       });
     }
   }

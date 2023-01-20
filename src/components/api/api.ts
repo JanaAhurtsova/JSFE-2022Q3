@@ -64,7 +64,7 @@ export default class Api {
   }
 
   public static async DriveCar(id: number): Promise<Response> {
-    return await fetch(`${engine}?id=${id}&status=drive`, {
+    return fetch(`${engine}?id=${id}&status=drive`, {
       method: 'PATCH',
     });
   }
