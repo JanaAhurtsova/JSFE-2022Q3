@@ -1,55 +1,38 @@
 import CarActions from './controller/action';
-import ControllerWinners from './controller/controllerWinners';
 import EditGarage from './controller/editGarage';
 import UpdateStates from './controller/updateStates';
-import Navigation from './navigation/navigation';
-import Header from './view/header/header';
+import View from './view/view';
 
 export default class App {
-  private readonly header: Header;
-
-  private navigation: Navigation;
+  private view: View;
 
   private editGarage: EditGarage;
-
-  private controllerWinners: ControllerWinners;
 
   private carAction: CarActions;
 
   constructor() {
-    this.header = new Header();
-    this.navigation = new Navigation();
+    this.view = new View();
     this.editGarage = new EditGarage();
-    this.controllerWinners = new ControllerWinners();
     this.carAction = new CarActions();
   }
 
   public async start() {
-    document.body.append(this.header.header);
-    await this.navigation.enableRoutChange();
+    this.view.buildView();
     await UpdateStates.UpdateStateGarage();
     await UpdateStates.UpdateStateWinners();
-    this.changeView();
     this.listenGarage();
-    this.listenWinners();
     this.changePage();
   }
 
-  private changeView() {
-    window.addEventListener('hashchange', async () => {
-      await this.navigation.enableRoutChange();
-      this.listenGarage();
-      this.listenWinners();
-      this.changePage();
-      await UpdateStates.UpdateStateGarage();
-      await UpdateStates.UpdateStateWinners();
-    });
-  }
-
   private changePage() {
-    (<HTMLElement>document.querySelector('.pagination')).addEventListener('click', async (event: Event) => {
-      await this.navigation.clickToNextPage(event);
-      await this.navigation.clickToPrevPage(event);
+    this.view.header.header.addEventListener('click', async (event) => {
+      await this.view.changeView(event);
+    });
+    document.body.addEventListener('click', async (event: Event) => {
+      await this.view.clickToNextPage(event);
+      await this.view.clickToPrevPage(event);
+      await this.view.sortByWins(event);
+      await this.view.sortByTime(event);
     });
   }
 
@@ -72,13 +55,6 @@ export default class App {
       await this.editGarage.generateRandomCars(event);
       await this.carAction.resetDriving(event);
       await this.carAction.startRace(event);
-    });
-  }
-
-  private listenWinners() {
-    document.querySelector('.table')?.addEventListener('click', async (event: Event) => {
-      await this.controllerWinners.sortByTime(event);
-      await this.controllerWinners.sortByWins(event);
     });
   }
 }

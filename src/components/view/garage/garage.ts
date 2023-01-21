@@ -1,17 +1,18 @@
 import data from '../../defaultData/data';
-import Page from '../templates/page';
 import CreateTrack from './track/createCartTrack';
 
-export default class GaragePage extends Page {
-  createTrack: CreateTrack;
+export default class GaragePage {
+  private createTrack: CreateTrack;
 
-  constructor(id: string) {
-    super(id);
+  public container: HTMLElement;
+
+  constructor() {
+    this.container = document.createElement('div');
+    this.container.classList.add('wrapper', 'garage');
     this.createTrack = new CreateTrack();
   }
 
-  private createButtons() {
-    return `<div class="update_car__button">
+  private createButtons = `<div class="update_car__button">
         <form class="form" id="create">
           <input class="input create-name" />
           <input type="color" class="input create-color" value="#000000" />
@@ -28,7 +29,6 @@ export default class GaragePage extends Page {
         <button class="button reset" disabled>Reset</button>
         <button class="button generate">Generate cars</button>
       </div>`;
-  }
 
   public renderGarage() {
     return `
@@ -44,7 +44,7 @@ export default class GaragePage extends Page {
   public render() {
     let content = '';
     content += `<div class="buttons">
-        ${this.createButtons()}
+        ${this.createButtons}
       </div>
       <div class="garage__wrapper">${this.renderGarage()}</div>
       <div class="pagination">

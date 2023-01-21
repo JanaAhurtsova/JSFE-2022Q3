@@ -10,4 +10,5 @@
   @include flex($align: stretch);
   flex-direction: column;
   gap: .5rem;
+  margin-bottom: .5rem;
 }

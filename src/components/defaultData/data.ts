@@ -13,6 +13,6 @@ export default {
   winnersCount,
   sort: '',
   order: '' as TOrder,
-  defaultPageId: 'garage',
+  defaultPage: 'garage',
   animation: {} as TAnimation,
 };

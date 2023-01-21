@@ -1,11 +1,16 @@
-import { SortWinners } from '../../../types/enum';
+import { Sort } from '../../../types/enum';
 import data from '../../defaultData/data';
 import CreateTrack from '../garage/track/createCartTrack';
-import Page from '../templates/page';
 
-export default class Winners extends Page {
-  constructor(id = 'winners') {
-    super(id);
+export default class Winners {
+  public container: HTMLElement;
+
+  private createTrack: CreateTrack;
+
+  constructor() {
+    this.container = document.createElement('div');
+    this.container.classList.add('wrapper', 'winners');
+    this.createTrack = new CreateTrack();
   }
 
   public renderWinnersTable() {
@@ -17,8 +22,8 @@ export default class Winners extends Page {
         <th>Number</th>
         <th>Car</th>
         <th>Name</th>
-        <th class="table__button sort-wins ${data.sort === SortWinners.WINS ? data.order : ''}">Wins</th>
-        <th class="table__button sort-time ${data.sort === SortWinners.TIMES ? data.order : ''}">Best Time(sec)</th>
+        <th class="table__button sort-wins ${data.sort === Sort.WINS ? data.order : ''}">Wins</th>
+        <th class="table__button sort-time ${data.sort === Sort.TIME ? data.order : ''}">Best Time(sec)</th>
       </thead>
       <tbody>
         ${data.winners
@@ -26,7 +31,7 @@ export default class Winners extends Page {
             (winner, index) => `
           <tr>
             <td>${index + 1}</td>
-            <td>${CreateTrack.getCarImage(winner.car.color)}</td>
+            <td>${this.createTrack.getCarImage(winner.car.color)}</td>
             <td>${winner.car.name}</td>
             <td>${winner.wins}</td>
             <td>${winner.time}</td>

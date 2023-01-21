@@ -2,7 +2,7 @@ import { ICreateTrack } from '../../../../types/interfaces';
 import { TGetCar } from '../../../../types/types';
 
 export default class CreateTrack implements ICreateTrack {
-  static getCarImage(color: string): string {
+  public getCarImage(color: string): string {
     return `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       version="1.1" width="256" height="256" viewBox="0 0 256 256" xml:space="preserve">
     <defs></defs>
@@ -45,7 +45,7 @@ export default class CreateTrack implements ICreateTrack {
           <button class="button stop-engine__button" id="stop-engine-car-${id}" disabled> B </button>
         </div>
         <div class="car" id="car-${id}">
-          ${CreateTrack.getCarImage(color)}
+          ${this.getCarImage(color)}
         </div>
       </div>
       <div class="flag" id="flag-${id}"></div>

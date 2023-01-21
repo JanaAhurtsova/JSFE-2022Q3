@@ -32,11 +32,11 @@ export default class CarActions {
 
     this.setAnimation(id, time);
 
-    await Api.DriveCar(id)
-      .then((response) => response.json() as Promise<TDrive>)
-      .catch(() => {
-        window.cancelAnimationFrame(data.animation[id].id);
-      });
+    try {
+      (await (await Api.DriveCar(id)).json()) as Promise<TDrive>;
+    } catch (err) {
+      window.cancelAnimationFrame(data.animation[id].id);
+    }
 
     return { id, time };
   }
@@ -93,29 +93,29 @@ export default class CarActions {
 
       const startAllEngines = data.cars.map(async ({ id }) => Api.StartEngine(id));
       await Promise.all(startAllEngines).then((motionParameters: TMoveCar[]) => {
-        motionParameters.forEach((parameter, ind) => {
+        motionParameters.forEach(async (parameter, ind) => {
           const carInfo = data.cars[ind];
           const time = Math.round(parameter.distance / parameter.velocity);
 
           this.setAnimation(carInfo.id, time);
 
-          Api.DriveCar(carInfo.id)
-            .then((response) => response.json())
-            .then(async () => {
+          try {
+            const { success } = (await (await Api.DriveCar(carInfo.id)).json()) as TDrive;
+            if (success) {
               if (this.flag) {
                 this.flag = false;
-                await Api.SaveWinner(carInfo.id, time / 1000);
+                await Api.SaveWinner(carInfo.id, +(time / 1000).toFixed(2));
 
                 this.message.showMessage();
                 const message = document.querySelector('.message') as HTMLHeadingElement;
                 if (message) {
-                  message.innerText = `${carInfo.name} went first (${time / 1000}sec)!`;
+                  message.innerText = `${carInfo.name} went first (${+(time / 1000).toFixed(2)}sec)!`;
                 }
               }
-            })
-            .catch(() => {
-              window.cancelAnimationFrame(data.animation[carInfo.id].id);
-            });
+            }
+          } catch (err) {
+            window.cancelAnimationFrame(data.animation[carInfo.id].id);
+          }
         });
       });
     }

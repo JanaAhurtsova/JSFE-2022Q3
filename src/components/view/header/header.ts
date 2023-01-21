@@ -40,7 +40,7 @@ export default class Header {
     if (attr) {
       node.setAttribute('href', attr);
     }
-    if (text !== undefined) {
+    if (text) {
       node.innerText = text;
     }
     return node;

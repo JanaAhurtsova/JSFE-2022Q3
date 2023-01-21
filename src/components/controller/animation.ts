@@ -3,7 +3,7 @@ import { TState } from '../../types/types';
 export default class Animation {
   public static AnimationCar(car: HTMLElement, distance: number, animationTime: number) {
     let start: number;
-    const state = {} as TState;
+    let state = {} as TState;
 
     state.id = window.requestAnimationFrame(function step(timestamp: number) {
       if (!start) {

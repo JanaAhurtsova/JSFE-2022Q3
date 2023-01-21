@@ -37,7 +37,7 @@ export type TItem = {
   wins: number;
 };
 
-export type TSort = 'wins' | 'times';
+export type TSort = 'wins' | 'time';
 export type TOrder = 'ASC' | 'DESC';
 
 export type TState = {

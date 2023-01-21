@@ -24,7 +24,8 @@ export default class GenerateCars {
   private static getRandomColor() {
     const letters = '0123456789ABCDEF';
     let color = '#';
-    for (let i = 0; i < 6; i += 1) {
+    const colorLength = 6;
+    for (let i = 0; i < colorLength; i += 1) {
       color += letters[Math.floor(Math.random() * letters.length)];
     }
 

@@ -1,16 +1,20 @@
 import { TGetCar } from '../../types/types';
 import Api from '../api/api';
-import GaragePage from '../view/garage/garage';
+// import GaragePage from '../view/garage/garage';
+import View from '../view/view';
 import GenerateCars from './generateCars';
 import UpdateStates from './updateStates';
 
 export default class EditGarage {
-  private garage: GaragePage;
+  // private garage: GaragePage;
+
+  private view: View;
 
   private selectedCar: null | TGetCar;
 
   constructor() {
-    this.garage = new GaragePage('garage');
+    this.view = new View();
+    // this.garage = new GaragePage();
     this.selectedCar = null;
   }
 
@@ -19,17 +23,9 @@ export default class EditGarage {
     const color = (document.querySelector(`.create-color`) as HTMLInputElement).value;
     await Api.CreateCar({ name, color });
     await UpdateStates.UpdateStateGarage();
-    this.updateGarage();
+    this.view.updateGarage();
     (document.querySelector(`.create-name`) as HTMLInputElement).value = '';
     (document.querySelector(`.create-color`) as HTMLInputElement).value = '#000000';
-  }
-
-  private updateGarage() {
-    const garageWrapper = document.querySelector(`.garage__wrapper`) as HTMLElement;
-    if (garageWrapper) {
-      garageWrapper.innerHTML = '';
-      garageWrapper.innerHTML = this.garage.renderGarage();
-    }
   }
 
   public async deleteCar(event: Event) {
@@ -39,7 +35,7 @@ export default class EditGarage {
       await Api.DeleteCar(id);
       await Api.DeleteWinner(id);
       await UpdateStates.UpdateStateGarage();
-      this.updateGarage();
+      this.view.updateGarage();
     }
   }
 
@@ -57,17 +53,17 @@ export default class EditGarage {
     const color = (document.querySelector(`.edit-color`) as HTMLInputElement).value;
     await Api.UpdateCar((<TGetCar>this.selectedCar).id, { name, color });
     await UpdateStates.UpdateStateGarage();
-    this.updateGarage();
+    this.view.updateGarage();
     this.editElement('', '#000000', true);
     this.selectedCar = null;
   }
 
   public async generateRandomCars(event: Event) {
     if ((event.target as HTMLButtonElement).closest('.generate')) {
-      const cars = GenerateCars.generateRandomCars(100);
+      const cars = GenerateCars.generateRandomCars();
       await Promise.all(cars.map(async (car) => Api.CreateCar(car)));
       await UpdateStates.UpdateStateGarage();
-      this.updateGarage();
+      this.view.updateGarage();
     }
   }
 

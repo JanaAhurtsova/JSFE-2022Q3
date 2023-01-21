@@ -1,3 +1,4 @@
+import { Requests } from '../../types/enum';
 import { TResponseGetCars, TCar, TGetCar, TWinner, TWinners, TMoveCar } from '../../types/types';
 
 const base = `http://localhost:3000`;
@@ -22,7 +23,7 @@ export default class Api {
 
   public static async CreateCar(body: TCar) {
     const response = await fetch(`${garage}`, {
-      method: 'POST',
+      method: Requests.POST,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -33,14 +34,14 @@ export default class Api {
 
   public static async DeleteCar(id: number) {
     const response = await fetch(`${garage}/${id}`, {
-      method: 'DELETE',
+      method: Requests.DELETE,
     });
     return response.json() as Promise<object>;
   }
 
   public static async UpdateCar(id: number, body: TCar) {
     const response = await fetch(`${garage}/${id}`, {
-      method: 'PUT',
+      method: Requests.PUT,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -51,21 +52,21 @@ export default class Api {
 
   public static async StopEngine(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=stopped`, {
-      method: 'PATCH',
+      method: Requests.PATCH,
     });
     return response.json() as Promise<TMoveCar>;
   }
 
   public static async StartEngine(id: number) {
     const response = await fetch(`${engine}?id=${id}&status=started`, {
-      method: 'PATCH',
+      method: Requests.PATCH,
     });
     return response.json() as Promise<TMoveCar>;
   }
 
   public static async DriveCar(id: number): Promise<Response> {
     return fetch(`${engine}?id=${id}&status=drive`, {
-      method: 'PATCH',
+      method: Requests.PATCH,
     });
   }
 
@@ -96,7 +97,7 @@ export default class Api {
 
   public static async CreateWinner(body: TWinner) {
     const response = await fetch(`${winners}`, {
-      method: 'POST',
+      method: Requests.POST,
       headers: {
         'Content-Type': 'application/json',
       },
@@ -107,14 +108,14 @@ export default class Api {
 
   public static async DeleteWinner(id: number) {
     const response = await fetch(`${winners}/${id}`, {
-      method: 'DELETE',
+      method: Requests.DELETE,
     });
     return response.json() as Promise<object>;
   }
 
   public static async UpdateWinner(id: number, body: Omit<TWinner, 'id'>) {
     const response = await fetch(`${winners}/${id}`, {
-      method: 'PUT',
+      method: Requests.PUT,
       headers: {
         'Content-Type': 'application/json',
       },
