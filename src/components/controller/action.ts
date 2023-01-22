@@ -35,7 +35,7 @@ export default class CarActions {
     try {
       (await (await Api.DriveCar(id)).json()) as Promise<TDrive>;
     } catch (err) {
-      window.cancelAnimationFrame(data.animation[id].id);
+      window.cancelAnimationFrame(data.animation[id].animation);
     }
 
     return { id, time };
@@ -69,7 +69,7 @@ export default class CarActions {
     car.style.transform = `translateX(0)`;
 
     if (data.animation[id]) {
-      window.cancelAnimationFrame(data.animation[id].id);
+      window.cancelAnimationFrame(data.animation[id].animation);
     }
   }
 
@@ -114,7 +114,7 @@ export default class CarActions {
               }
             }
           } catch (err) {
-            window.cancelAnimationFrame(data.animation[carInfo.id].id);
+            window.cancelAnimationFrame(data.animation[carInfo.id].animation);
           }
         });
       });

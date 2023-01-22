@@ -41,7 +41,7 @@ export type TSort = 'wins' | 'time';
 export type TOrder = 'ASC' | 'DESC';
 
 export type TState = {
-  id: number;
+  animation: number;
 };
 
 export type TAnimation = {

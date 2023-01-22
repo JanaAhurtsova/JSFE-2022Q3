@@ -5,7 +5,7 @@ export default class Animation {
     let start: number;
     const state = {} as TState;
 
-    state.id = window.requestAnimationFrame(function step(timestamp: number) {
+    state.animation = window.requestAnimationFrame(function step(timestamp: number) {
       if (!start) {
         start = timestamp;
       }
@@ -16,7 +16,7 @@ export default class Animation {
       car.style.transform = `translateX(${currentShift}px)`;
 
       if (currentShift < distance) {
-        state.id = window.requestAnimationFrame(step);
+        state.animation = window.requestAnimationFrame(step);
       }
     });
 
